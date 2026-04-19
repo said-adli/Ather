@@ -9,7 +9,7 @@ export function AtharTree() {
   const [mounted, setMounted] = useState(false);
   const khatmaProgress = useAppStore((state) => state.khatmaProgress);
   // Re-evaluate daily progress when habits change
-  const completedHabits = useAppStore((state) => state.completedHabits);
+  useAppStore((state) => state.completedHabits);
   const getDailyProgress = useAppStore((state) => state.getDailyProgress);
   
   useEffect(() => {
