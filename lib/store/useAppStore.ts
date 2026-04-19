@@ -152,7 +152,7 @@ export const useAppStore = create<AppState>()(
           if (state.quranFontSize === undefined) state.quranFontSize = 24;
         }
 
-        return state as AppState;
+        return state as unknown as AppState;
       },
       // Only persist data properties, not action functions
       partialize: (state) => ({
