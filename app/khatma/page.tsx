@@ -49,7 +49,7 @@ export default function KhatmaPage() {
           <Target size={120} />
         </div>
         <h2 className="text-emerald-900 font-bold mb-4 flex items-center gap-2">
-          <Calendar size={18} className="text-emerald-500" /> Goal Setting
+          <Calendar width={18} height={18} className="text-emerald-500" /> Goal Setting
         </h2>
         
         <div className="flex flex-col gap-2">
