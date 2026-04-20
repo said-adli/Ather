@@ -4,7 +4,13 @@ import { useState, useRef, useEffect } from "react";
 import { Play, Pause, RotateCcw } from "lucide-react";
 import { motion, useScroll, useMotionValueEvent, AnimatePresence } from "framer-motion";
 
-export function AudioPlayer({ audioUrl, surahName }: { audioUrl: string; surahName: string }) {
+interface AudioPlayerProps {
+  audioUrl: string;
+  surahName: string;
+  reciterName: string;
+}
+
+export function AudioPlayer({ audioUrl, surahName, reciterName }: AudioPlayerProps) {
   const { scrollY } = useScroll();
   const [hidden, setHidden] = useState(false);
   
@@ -43,6 +49,16 @@ export function AudioPlayer({ audioUrl, surahName }: { audioUrl: string; surahNa
     };
   }, []);
 
+  // Reset audio when URL changes (reciter change)
+  useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.pause();
+      audioRef.current.load();
+      setIsPlaying(false);
+      setProgress(0);
+    }
+  }, [audioUrl]);
+
   const togglePlay = () => {
     if (audioRef.current) {
       if (isPlaying) {
@@ -77,13 +93,13 @@ export function AudioPlayer({ audioUrl, surahName }: { audioUrl: string; surahNa
             transition={{ type: "spring", stiffness: 200, damping: 25 }}
             className="fixed bottom-24 left-0 right-0 max-w-md mx-auto px-6 z-40 pointer-events-none"
           >
-            <div className="bg-slate-900/90 backdrop-blur-xl border border-white/10 shadow-2xl rounded-3xl p-3 px-5 flex items-center justify-between pointer-events-auto">
+            <div className="bg-slate-900/90 backdrop-blur-xl border border-white/10 shadow-2xl rounded-3xl p-3 px-5 flex items-center justify-between pointer-events-auto" dir="rtl">
               
-              <div className="flex flex-col mr-auto">
+              <div className="flex flex-col ml-auto">
                 <span className="text-white font-bold text-sm">{surahName}</span>
                 <span className="text-slate-400 text-[10px] uppercase tracking-widest font-semibold flex items-center gap-1.5">
                   <span className="flex h-1.5 w-1.5 rounded-full bg-emerald-500" />
-                  Mishary Alafasy
+                  {reciterName}
                 </span>
               </div>
 
@@ -102,7 +118,7 @@ export function AudioPlayer({ audioUrl, surahName }: { audioUrl: string; surahNa
                   {isPlaying ? (
                     <Pause size={20} className="fill-slate-900" />
                   ) : (
-                    <Play size={20} className="fill-slate-900 ml-1" />
+                    <Play size={20} className="fill-slate-900 mr-1" />
                   )}
                 </button>
               </div>

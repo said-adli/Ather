@@ -35,10 +35,10 @@ export default function HabitsPage() {
       
       {/* Header section anchored to top */}
       <header className="px-6 pt-10 pb-6 bg-white/80 backdrop-blur-xl border-b border-slate-100 sticky top-0 z-10 shadow-sm">
-        <h1 className="text-3xl font-bold text-slate-800 tracking-tight">Today</h1>
+        <h1 className="text-3xl font-bold text-slate-800 tracking-tight">عادات اليوم</h1>
         <div className="mt-4 flex flex-col gap-2">
           <div className="flex justify-between items-end">
-            <span className="text-sm font-semibold text-slate-500 uppercase tracking-wider">Daily Progress</span>
+            <span className="text-sm font-semibold text-slate-500 tracking-wider">التقدم اليومي</span>
             <span className="text-xl font-black text-emerald-600">{progress}%</span>
           </div>
           {/* Progress Bar */}
@@ -57,7 +57,7 @@ export default function HabitsPage() {
       <div className="flex-1 px-4 py-6 space-y-8">
         {(Object.keys(groupedHabits) as HabitCategory[]).map((category) => (
           <section key={category} className="space-y-3">
-            <h2 className="px-2 text-sm font-bold text-slate-400 tracking-wider uppercase">
+            <h2 className="px-2 text-sm font-bold text-slate-400 tracking-wider">
               {category}
             </h2>
             

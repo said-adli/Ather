@@ -30,19 +30,20 @@ export default function QuranIndexPage() {
     <div className="flex flex-col min-h-full bg-slate-50">
       
       <div className="px-6 pt-10 pb-4 bg-white/80 backdrop-blur-xl border-b border-slate-100 sticky top-0 z-10 shadow-sm safe-area-inset-top">
-        <h1 className="text-3xl font-bold text-slate-800 tracking-tight">Quran</h1>
+        <h1 className="text-3xl font-bold text-slate-800 tracking-tight">القرآن الكريم</h1>
         
         {/* Sticky Search Bar */}
         <div className="mt-5 relative">
-          <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+          <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
             <Search size={18} className="text-slate-400" />
           </div>
           <input
             type="text"
-            className="block w-full pl-10 pr-3 py-3 border border-slate-200 rounded-2xl leading-5 bg-slate-50 placeholder-slate-400 focus:outline-none focus:bg-white focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500 transition-all sm:text-sm shadow-inner"
-            placeholder="Search Surahs by name..."
+            className="block w-full pr-10 pl-3 py-3 border border-slate-200 rounded-2xl leading-5 bg-slate-50 placeholder-slate-400 focus:outline-none focus:bg-white focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500 transition-all sm:text-sm shadow-inner"
+            placeholder="ابحث عن سورة..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
+            dir="rtl"
           />
         </div>
       </div>
@@ -69,14 +70,14 @@ export default function QuranIndexPage() {
                     <span className="text-sm font-bold text-emerald-600">{chapter.id}</span>
                   </div>
                   
-                  <div className="ml-4 flex-1">
+                  <div className="mr-4 flex-1">
                     <h3 className="text-slate-800 font-semibold">{chapter.name_simple}</h3>
-                    <p className="text-slate-500 text-xs font-medium uppercase tracking-wider mt-0.5">
-                      {chapter.translated_name.name} • {chapter.verses_count} Ayahs
+                    <p className="text-slate-500 text-xs font-medium tracking-wider mt-0.5">
+                      {chapter.translated_name.name} • {chapter.verses_count} آية
                     </p>
                   </div>
 
-                  <div className="ml-4 text-right">
+                  <div className="mr-4 text-left">
                     <span className="font-arabic text-xl text-emerald-800 font-bold">{chapter.name_arabic}</span>
                   </div>
                 </Link>
@@ -85,7 +86,7 @@ export default function QuranIndexPage() {
             
             {filteredChapters.length === 0 && (
               <div className="text-center py-10 text-slate-500">
-                No Surah found matching &quot;{searchQuery}&quot;
+                لم يتم العثور على سورة تطابق &quot;{searchQuery}&quot;
               </div>
             )}
           </div>

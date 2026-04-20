@@ -1,4 +1,4 @@
-export type HabitCategory = 'Daily Prayers' | 'Sunnah & Nawafil' | 'Azkar' | 'Weekly/Occasional';
+export type HabitCategory = 'الصلوات' | 'السنن والنوافل' | 'الأذكار' | 'أسبوعية';
 
 export interface Habit {
   id: string;
@@ -8,18 +8,18 @@ export interface Habit {
 }
 
 export const HABITS: Habit[] = [
-  { id: 'fajr', title: 'Fajr', category: 'Daily Prayers', isDaily: true },
-  { id: 'dhuhr', title: 'Dhuhr', category: 'Daily Prayers', isDaily: true },
-  { id: 'asr', title: 'Asr', category: 'Daily Prayers', isDaily: true },
-  { id: 'maghrib', title: 'Maghrib', category: 'Daily Prayers', isDaily: true },
-  { id: 'isha', title: 'Isha', category: 'Daily Prayers', isDaily: true },
+  { id: 'fajr', title: 'صلاة الفجر', category: 'الصلوات', isDaily: true },
+  { id: 'dhuhr', title: 'صلاة الظهر', category: 'الصلوات', isDaily: true },
+  { id: 'asr', title: 'صلاة العصر', category: 'الصلوات', isDaily: true },
+  { id: 'maghrib', title: 'صلاة المغرب', category: 'الصلوات', isDaily: true },
+  { id: 'isha', title: 'صلاة العشاء', category: 'الصلوات', isDaily: true },
   
-  { id: 'witr', title: 'Witr', category: 'Sunnah & Nawafil', isDaily: true },
-  { id: 'duha', title: 'Duha', category: 'Sunnah & Nawafil', isDaily: true },
+  { id: 'witr', title: 'صلاة الوتر', category: 'السنن والنوافل', isDaily: true },
+  { id: 'duha', title: 'صلاة الضحى', category: 'السنن والنوافل', isDaily: true },
   
-  { id: 'morning_azkar', title: 'Morning Azkar', category: 'Azkar', isDaily: true },
-  { id: 'evening_azkar', title: 'Evening Azkar', category: 'Azkar', isDaily: true },
+  { id: 'morning_azkar', title: 'أذكار الصباح', category: 'الأذكار', isDaily: true },
+  { id: 'evening_azkar', title: 'أذكار المساء', category: 'الأذكار', isDaily: true },
   
-  { id: 'fasting_mon_thu', title: 'Monday/Thursday Fasting', category: 'Weekly/Occasional', isDaily: false },
-  { id: 'kahf_friday', title: 'Surat Al-Kahf (Friday)', category: 'Weekly/Occasional', isDaily: false },
+  { id: 'fasting_mon_thu', title: 'صيام الإثنين/الخميس', category: 'أسبوعية', isDaily: false },
+  { id: 'kahf_friday', title: 'سورة الكهف (الجمعة)', category: 'أسبوعية', isDaily: false },
 ];

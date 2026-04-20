@@ -19,10 +19,10 @@ export function AtharTree() {
   const progress = mounted ? getDailyProgress() : 0;
   
   const treeStatus = useMemo(() => {
-    if (progress === 0) return { message: "Start your day with a good deed", icon: "🌱", color: "bg-emerald-50" };
-    if (progress < 50) return { message: "Your tree is taking root", icon: "🌿", color: "bg-emerald-100" };
-    if (progress < 100) return { message: "Your tree is blooming", icon: "🌳", color: "bg-emerald-200" };
-    return { message: "Mashallah, a fruitful day!", icon: "✨🌳✨", color: "bg-emerald-300" };
+    if (progress === 0) return { message: "ابدأ يومك بعمل صالح", icon: "🌱", color: "bg-emerald-50" };
+    if (progress < 50) return { message: "شجرتك تنمو", icon: "🌿", color: "bg-emerald-100" };
+    if (progress < 100) return { message: "شجرتك تزدهر", icon: "🌳", color: "bg-emerald-200" };
+    return { message: "ماشاء الله، يوم مثمر!", icon: "✨🌳✨", color: "bg-emerald-300" };
   }, [progress]);
 
   return (
@@ -53,7 +53,7 @@ export function AtharTree() {
       </motion.div>
       
       <h3 className="text-slate-800 font-bold text-xl text-center mb-1">
-        Your Athar Tree
+        شجرة أثرك
       </h3>
       
       <AnimatePresence mode="wait">
@@ -70,12 +70,12 @@ export function AtharTree() {
       {/* Mini Progress stats indicator inside the tree view */}
       <div className="mt-8 flex items-center gap-4 bg-white/70 backdrop-blur-xl px-5 py-2.5 rounded-full text-xs font-bold text-slate-700 shadow-sm border border-emerald-50/50">
         <div className="flex items-center gap-1.5">
-          <span className="text-emerald-500 font-black">Quran</span> 
+          <span className="text-emerald-500 font-black">القرآن</span> 
           <span>{mounted ? khatmaProgress : 0}%</span>
         </div>
         <div className="w-1 h-1 bg-emerald-300/50 rounded-full" />
         <div className="flex items-center gap-1.5">
-          <span className="text-emerald-500 font-black">Habits</span>
+          <span className="text-emerald-500 font-black">العادات</span>
           <span>{progress}%</span>
         </div>
       </div>

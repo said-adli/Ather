@@ -14,13 +14,13 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "Athar - Islamic PWA",
-  description: "A comprehensive Islamic Progressive Web App",
+  title: "أثر — تطبيق إسلامي",
+  description: "تطبيق إسلامي شامل: القرآن الكريم، الأذكار، تتبع العادات، وختمة القرآن",
   manifest: "/manifest.json",
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
-    title: "Athar",
+    title: "أثر",
   },
 };
 
@@ -30,7 +30,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="h-full antialiased">
+    <html lang="ar" dir="rtl" className="h-full antialiased">
       <body className={`${inter.className} h-full overflow-hidden bg-slate-50 text-slate-900`}>
         <div className="flex flex-col h-full mx-auto max-w-md bg-white shadow-2xl overflow-hidden relative">
           
@@ -39,7 +39,7 @@ export default function RootLayout({
             {children}
           </main>
 
-          {/* iOS Bottom Navigation Bar */}
+          {/* Bottom Navigation Bar */}
           <BottomNav />
           
         </div>

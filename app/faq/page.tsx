@@ -13,28 +13,28 @@ interface FAQ {
 const FAQS: FAQ[] = [
   {
     id: "fq1",
-    question: "Is my fast valid if I am traveling?",
-    answer: "Yes. While travelers are permitted to break their fast and make it up later, fasting while traveling is valid and accepted as long as it does not cause severe hardship to the traveler."
+    question: "هل صيامي صحيح إذا كنت مسافراً؟",
+    answer: "نعم. المسافر مُرخَّص له الفطر وقضاؤه لاحقاً، لكن الصيام أثناء السفر صحيح ومقبول ما لم يسبب مشقة شديدة للمسافر."
   },
   {
     id: "fq2",
-    question: "How long can I wipe over my socks for Wudu?",
-    answer: "A resident may wipe over their socks for 24 hours from the first time they wipe after breaking wudu. A traveler may wipe for up to 72 hours (3 days and nights)."
+    question: "كم مدة المسح على الجوارب في الوضوء؟",
+    answer: "يجوز للمقيم المسح على جوربيه لمدة يوم وليلة (24 ساعة) من أول مسح بعد الحدث. والمسافر يمسح حتى ثلاثة أيام بلياليها (72 ساعة)."
   },
   {
     id: "fq3",
-    question: "Do I have to perform missed (Qada) prayers in order?",
-    answer: "It is generally required to make up missed prayers in chronological order if the number of missed prayers is small (less than six). However, if time is short for the current prayer, one must pray the current one first."
+    question: "هل يجب أداء الصلوات الفائتة (القضاء) بالترتيب؟",
+    answer: "يجب عموماً قضاء الصلوات الفائتة بالترتيب الزمني إذا كان عدد الصلوات الفائتة قليلاً (أقل من ست). لكن إن ضاق وقت الصلاة الحاضرة، وجب أداؤها أولاً."
   },
   {
     id: "fq4",
-    question: "If I miss Witr, can I make it up?",
-    answer: "Yes, it is highly recommended to make up the Witr prayer during the morning (Duha time), but it is prayed as an even number of rak'ahs (e.g., if you usually pray 3, you make up 4)."
+    question: "إذا فاتتني صلاة الوتر، هل يمكنني قضاؤها؟",
+    answer: "نعم، يُستحب قضاء صلاة الوتر في وقت الضحى، لكنها تُصلى شفعاً (مثلاً: إذا كنت تصلي عادةً 3 ركعات، تقضي 4 ركعات)."
   },
   {
     id: "fq5",
-    question: "What breaks the fast inadvertently?",
-    answer: "Swallowing something unintentionally, forgetting you are fasting and eating/drinking, or having a wet dream do not break the fast. You simply continue fasting."
+    question: "ما الذي يُبطل الصيام دون قصد؟",
+    answer: "ابتلاع شيء عن غير قصد، أو نسيان الصيام والأكل/الشرب، أو الاحتلام لا تُبطل الصيام. تستمر في صيامك فحسب."
   }
 ];
 
@@ -50,9 +50,9 @@ export default function FAQPage() {
       
       <header className="mb-8">
         <h1 className="text-3xl font-bold text-slate-800 tracking-tight flex items-center gap-3">
-          FAQ & Fiqh <HelpCircle className="text-emerald-500" size={28} />
+          أسئلة فقهية <HelpCircle className="text-emerald-500" size={28} />
         </h1>
-        <p className="text-slate-500 font-medium mt-1">Common daily questions and fatwas.</p>
+        <p className="text-slate-500 font-medium mt-1">أسئلة يومية شائعة وفتاوى</p>
       </header>
 
       {/* Disclaimer Card */}
@@ -61,12 +61,12 @@ export default function FAQPage() {
           <Info size={20} className="text-amber-700" />
         </div>
         <div>
-          <h3 className="text-sm font-bold text-amber-900 mb-1">General Guidelines</h3>
+          <h3 className="text-sm font-bold text-amber-900 mb-1">إرشادات عامة</h3>
           <p className="text-xs text-amber-800/80 leading-relaxed font-medium">
-            These answers are curated for standard daily inquiries based on general consensus. For complex or situation-specific rulings, please consult a qualified scholar.
+            هذه الإجابات مُعدَّة للأسئلة اليومية المعتادة بناءً على الإجماع العام. للأحكام المعقدة أو الخاصة بحالتك، يرجى استشارة عالم مؤهل.
           </p>
-          <a href="#" className="mt-3 inline-flex items-center gap-1 text-xs font-bold text-amber-700 bg-amber-500/10 hover:bg-amber-500/20 px-3 py-1.5 rounded-lg transition-colors">
-            Official Dar al-Ifta <ExternalLink size={12} strokeWidth={3} />
+          <a href="https://www.dar-alifta.org" target="_blank" rel="noopener noreferrer" className="mt-3 inline-flex items-center gap-1 text-xs font-bold text-amber-700 bg-amber-500/10 hover:bg-amber-500/20 px-3 py-1.5 rounded-lg transition-colors">
+            دار الإفتاء الرسمية <ExternalLink size={12} strokeWidth={3} />
           </a>
         </div>
       </div>
@@ -83,7 +83,7 @@ export default function FAQPage() {
             >
               <button
                 onClick={() => toggle(faq.id)}
-                className="w-full text-left px-5 py-4 flex items-center justify-between focus:outline-none"
+                className="w-full text-right px-5 py-4 flex items-center justify-between focus:outline-none"
               >
                 <span className={`font-semibold text-sm transition-colors ${isOpen ? 'text-emerald-800' : 'text-slate-700'}`}>
                   {faq.question}
@@ -92,7 +92,7 @@ export default function FAQPage() {
                   initial={false}
                   animate={{ rotate: isOpen ? 180 : 0 }}
                   transition={{ duration: 0.3, ease: "easeInOut" }}
-                  className={`${isOpen ? 'text-emerald-500' : 'text-slate-400'}`}
+                  className={`flex-shrink-0 mr-3 ${isOpen ? 'text-emerald-500' : 'text-slate-400'}`}
                 >
                   <ChevronDown size={20} />
                 </motion.div>
