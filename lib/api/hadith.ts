@@ -67,8 +67,8 @@ export async function getCollectionInfo(collectionId: string): Promise<Collectio
 
 export async function getHadithSection(collectionId: string, sectionId: string): Promise<SectionResponse | null> {
   try {
-    // We request the arabic edition explicitly 
-    const res = await fetch(`${HADITH_API_BASE}/editions/ara-${collectionId}/${sectionId}.json`, { next: { revalidate: 86400 } });
+    // We request the arabic edition explicitly against the /sections/ route
+    const res = await fetch(`${HADITH_API_BASE}/editions/ara-${collectionId}/sections/${sectionId}.json`, { next: { revalidate: 86400 } });
     if (!res.ok) throw new Error(`Failed to fetch section ${sectionId} for ${collectionId}`);
     const data = await res.json();
     return data as SectionResponse;
