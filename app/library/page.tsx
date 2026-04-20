@@ -30,15 +30,27 @@ export default function LibraryPage() {
           المكتبة <LibraryBig className="text-emerald-500" size={28} />
         </h1>
         
-        {/* Search Bar */}
-        <div className="mt-5 relative">
+        {/* Global Search Button for Dorar */}
+        <AnimatePresence>
+          {activeTab === "hadith" && (
+            <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }}>
+              <Link href="/library/hadith/search" className="mt-5 mb-3 flex items-center justify-between p-3.5 bg-emerald-50 border border-emerald-200 hover:bg-emerald-100 transition-colors rounded-2xl group active:scale-[0.98]">
+                <Search size={18} className="text-emerald-600" />
+                <span className="text-sm font-bold text-emerald-800" dir="rtl">البحث الشامل في الأحاديث (الدرر السنية)</span>
+              </Link>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* Filter Bar */}
+        <div className={`relative ${activeTab === "hadith" ? "" : "mt-5"}`}>
           <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
             <Search size={18} className="text-slate-400" />
           </div>
           <input
             type="text"
             className="block w-full pr-10 pl-3 py-3 border border-slate-200 rounded-2xl leading-5 bg-slate-50 placeholder-slate-400 focus:outline-none focus:bg-white focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500 transition-all sm:text-sm shadow-inner"
-            placeholder={activeTab === "hadith" ? "ابحث في كتب الحديث..." : "ابحث عن كتاب أو مؤلف..."}
+            placeholder={activeTab === "hadith" ? "تصفية مجموعات الحديث..." : "ابحث عن كتاب أو مؤلف..."}
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             dir="rtl"

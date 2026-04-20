@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import { BottomNav } from "@/components/layout/BottomNav";
+import { IOSInstallPrompt } from "@/components/ui/IOSInstallPrompt";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -41,7 +42,7 @@ export default function RootLayout({
 
           {/* Bottom Navigation Bar */}
           <BottomNav />
-          
+          <IOSInstallPrompt />
         </div>
       </body>
     </html>

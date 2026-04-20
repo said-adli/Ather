@@ -3,7 +3,9 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { Heart, X } from "lucide-react";
 import { useState } from "react";
-import { RANDOM_DUAS } from "@/lib/data/athkar";
+import { ATHKAR } from "@/lib/data/athkar";
+
+const RANDOM_DUAS = ATHKAR.map(a => a.text).filter(t => t.length < 120 && t.length > 20);
 
 export function TranquilityButton() {
   const [showDua, setShowDua] = useState(false);
