@@ -1,9 +1,10 @@
 "use client";
 
-import { useAppStore, RECITERS, TAFSIR_OPTIONS } from "@/lib/store/useAppStore";
+import { useAppStore } from "@/lib/store/useAppStore";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { User, Type, RotateCcw, AlertTriangle, ChevronRight, Sparkles, BookOpen, Mic } from "lucide-react";
+import { User, Type, RotateCcw, AlertTriangle, ChevronRight, Sparkles, HelpCircle } from "lucide-react";
+import Link from "next/link";
 
 export default function ProfilePage() {
   const [mounted, setMounted] = useState(false);
@@ -15,13 +16,9 @@ export default function ProfilePage() {
   const khatmaProgress = useAppStore((state) => state.khatmaProgress);
   const readAyahs = useAppStore((state) => state.readAyahs);
   const getDailyProgress = useAppStore((state) => state.getDailyProgress);
-  const selectedTafsirId = useAppStore((state) => state.selectedTafsirId);
-  const selectedReciterId = useAppStore((state) => state.selectedReciterId);
 
   const setUserName = useAppStore((state) => state.setUserName);
   const setQuranFontSize = useAppStore((state) => state.setQuranFontSize);
-  const setSelectedTafsirId = useAppStore((state) => state.setSelectedTafsirId);
-  const setSelectedReciterId = useAppStore((state) => state.setSelectedReciterId);
   const resetAllProgress = useAppStore((state) => state.resetAllProgress);
 
   useEffect(() => {
@@ -107,7 +104,7 @@ export default function ProfilePage() {
           </div>
 
           {/* Quran Font Size */}
-          <div className="px-6 py-4 flex items-center justify-between border-b border-slate-50">
+          <div className="px-6 py-4 flex items-center justify-between">
             <div className="flex items-center gap-3">
               <div className="w-9 h-9 rounded-xl bg-amber-50 flex items-center justify-center">
                 <Type size={16} className="text-amber-600" />
@@ -137,64 +134,27 @@ export default function ProfilePage() {
               </button>
             </div>
           </div>
-
-          {/* Tafsir Selection */}
-          <div className="px-6 py-4 flex items-center justify-between border-b border-slate-50">
-            <div className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-xl bg-emerald-50 flex items-center justify-center">
-                <BookOpen size={16} className="text-emerald-500" />
-              </div>
-              <div>
-                <p className="text-sm font-semibold text-slate-700">التفسير</p>
-                <p className="text-xs text-slate-400">اختر التفسير المفضل</p>
-              </div>
-            </div>
-            <select
-              value={mounted ? selectedTafsirId : 16}
-              onChange={(e) => setSelectedTafsirId(Number(e.target.value))}
-              className="text-xs font-bold text-slate-600 bg-slate-50 border border-slate-200 rounded-lg px-2 py-1.5 focus:outline-none focus:ring-2 focus:ring-emerald-500/50"
-              dir="rtl"
-            >
-              {TAFSIR_OPTIONS.map((t) => (
-                <option key={t.id} value={t.id}>
-                  {t.nameAr}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          {/* Reciter Selection */}
-          <div className="px-6 py-4 flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-xl bg-purple-50 flex items-center justify-center">
-                <Mic size={16} className="text-purple-500" />
-              </div>
-              <div>
-                <p className="text-sm font-semibold text-slate-700">القارئ</p>
-                <p className="text-xs text-slate-400">اختر القارئ المفضل</p>
-              </div>
-            </div>
-            <select
-              value={mounted ? selectedReciterId : "husary"}
-              onChange={(e) => setSelectedReciterId(e.target.value)}
-              className="text-xs font-bold text-slate-600 bg-slate-50 border border-slate-200 rounded-lg px-2 py-1.5 focus:outline-none focus:ring-2 focus:ring-emerald-500/50"
-              dir="rtl"
-            >
-              {RECITERS.map((r) => (
-                <option key={r.id} value={r.id}>
-                  {r.nameAr}
-                </option>
-              ))}
-            </select>
-          </div>
         </section>
 
-        {/* ── About Card ───────────────────────────────── */}
+        {/* ── Help & Info Card ────────────────────────────── */}
         <section className="bg-white rounded-3xl overflow-hidden shadow-[0_2px_10px_rgba(0,0,0,0.02)] border border-slate-100">
           <div className="px-6 pt-5 pb-3">
-            <h2 className="text-sm font-bold text-slate-400 tracking-wider">حول التطبيق</h2>
+            <h2 className="text-sm font-bold text-slate-400 tracking-wider">المساعدة والمعلومات</h2>
           </div>
           
+          <Link href="/faq" className="px-6 py-4 flex items-center justify-between border-b border-slate-50 hover:bg-slate-50 transition-colors">
+            <div className="flex items-center gap-3">
+              <div className="w-9 h-9 rounded-xl bg-indigo-50 flex items-center justify-center">
+                <HelpCircle size={16} className="text-indigo-500" />
+              </div>
+              <div>
+                <p className="text-sm font-semibold text-slate-700">أسئلة فقهية (FAQ)</p>
+                <p className="text-xs text-slate-400">إجابات للأسئلة الشائعة</p>
+              </div>
+            </div>
+            <ChevronRight size={16} className="text-slate-300" />
+          </Link>
+
           <div className="px-6 py-4 flex items-center justify-between border-b border-slate-50">
             <div className="flex items-center gap-3">
               <div className="w-9 h-9 rounded-xl bg-emerald-50 flex items-center justify-center">
@@ -202,7 +162,7 @@ export default function ProfilePage() {
               </div>
               <p className="text-sm font-semibold text-slate-700">أثر</p>
             </div>
-            <span className="text-xs font-bold text-slate-400 bg-slate-50 px-3 py-1.5 rounded-lg">v0.2.0</span>
+            <span className="text-xs font-bold text-slate-400 bg-slate-50 px-3 py-1.5 rounded-lg">v0.3.0</span>
           </div>
 
           <div className="px-6 py-4 flex items-center justify-between">

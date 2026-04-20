@@ -27,6 +27,16 @@ export interface TafsirResponse {
   };
 }
 
+interface ChapterRecitationResponse {
+  audio_file: {
+    id: number;
+    chapter_id: number;
+    file_size: number;
+    format: string;
+    audio_url: string;
+  };
+}
+
 const API_BASE = "https://api.quran.com/api/v4";
 
 // Fetches the list of all 114 Surahs
@@ -88,11 +98,27 @@ export async function getTafsir(tafsirId: number, verseKey: string): Promise<str
 }
 
 /**
- * Returns the audio URL for a surah from a specific reciter.
- * @param reciterSubfolder - The quranicaudio.com CDN subfolder for the reciter
- * @param chapterId - The chapter number
+ * Fetches the audio URL for a chapter from a specific reciter using the Quran.com v4 API.
+ * Endpoint: GET /chapter_recitations/{reciter_id}/{chapter_id}
+ * Returns the full audio_url string, or empty string on failure.
+ *
+ * @param reciterId - The numeric reciter ID from the Quran.com API
+ * @param chapterId - The chapter number (1–114)
  */
-export function getChapterAudioUrl(reciterSubfolder: string, chapterId: string | number): string {
-  const formattedId = String(chapterId).padStart(3, '0');
-  return `https://download.quranicaudio.com/quran/${reciterSubfolder}/${formattedId}.mp3`;
+export async function getChapterAudioUrl(reciterId: number, chapterId: string | number): Promise<string> {
+  try {
+    const res = await fetch(`${API_BASE}/chapter_recitations/${reciterId}/${chapterId}`);
+    if (!res.ok) throw new Error(`Failed to fetch audio: ${res.status}`);
+    const data: ChapterRecitationResponse = await res.json();
+    
+    let url = data.audio_file.audio_url;
+    // Ensure URL is absolute
+    if (url && !url.startsWith("http")) {
+      url = `https://download.quranicaudio.com${url.startsWith("/") ? "" : "/"}${url}`;
+    }
+    return url;
+  } catch (error) {
+    console.error(`Error fetching audio for reciter=${reciterId}, chapter=${chapterId}:`, error);
+    return "";
+  }
 }

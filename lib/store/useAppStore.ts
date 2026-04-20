@@ -16,26 +16,34 @@ function getLocalDateKey(): string {
 }
 
 // ---------------------------------------------------------------------------
-// Reciter catalogue (subset of popular reciters from QuranicAudio)
+// Reciter catalogue — official Quran.com API v4 numeric IDs
+// Endpoint: https://api.quran.com/api/v4/resources/recitations
 // ---------------------------------------------------------------------------
 
 export interface Reciter {
-  id: string;
+  id: number;       // Quran.com API reciter ID
   nameAr: string;
   nameEn: string;
-  subfolder: string; // quranicaudio.com CDN subfolder
 }
 
 export const RECITERS: Reciter[] = [
-  { id: "husary", nameAr: "محمود خليل الحصري", nameEn: "Al-Husary", subfolder: "mahmoud_khaleel_al-husaree" },
-  { id: "mishary", nameAr: "مشاري العفاسي", nameEn: "Mishary Alafasy", subfolder: "mishaari_raashid_al_3afaasee" },
-  { id: "sudais", nameAr: "عبدالرحمن السديس", nameEn: "As-Sudais", subfolder: "abdurrahmaan_as-sudais" },
-  { id: "minshawi", nameAr: "محمد صديق المنشاوي", nameEn: "Al-Minshawi", subfolder: "muhammad_siddeeq_al-minshawee" },
-  { id: "basit", nameAr: "عبدالباسط عبدالصمد", nameEn: "Abdul Basit", subfolder: "abdul_basit_murattal" },
+  { id: 6,  nameAr: "محمود خليل الحصري",            nameEn: "Al-Husary" },
+  { id: 7,  nameAr: "مشاري راشد العفاسي",            nameEn: "Mishari Alafasy" },
+  { id: 3,  nameAr: "عبدالرحمن السديس",              nameEn: "As-Sudais" },
+  { id: 9,  nameAr: "محمد صديق المنشاوي (مرتّل)",     nameEn: "Al-Minshawi (Murattal)" },
+  { id: 2,  nameAr: "عبدالباسط عبدالصمد (مرتّل)",     nameEn: "Abdul Basit (Murattal)" },
+  { id: 1,  nameAr: "عبدالباسط عبدالصمد (مجوّد)",     nameEn: "Abdul Basit (Mujawwad)" },
+  { id: 10, nameAr: "سعود الشريم",                   nameEn: "Ash-Shuraym" },
+  { id: 4,  nameAr: "أبو بكر الشاطري",               nameEn: "Abu Bakr al-Shatri" },
+  { id: 5,  nameAr: "هاني الرفاعي",                  nameEn: "Hani ar-Rifai" },
+  { id: 11, nameAr: "محمد الطبلاوي",                  nameEn: "Al-Tablawi" },
+  { id: 12, nameAr: "الحصري (معلّم)",                 nameEn: "Al-Husary (Muallim)" },
+  { id: 8,  nameAr: "المنشاوي (مجوّد)",               nameEn: "Al-Minshawi (Mujawwad)" },
 ];
 
 // ---------------------------------------------------------------------------
-// Available Tafsirs
+// Available Tafsirs — official Quran.com API v4 IDs
+// Endpoint: https://api.quran.com/api/v4/resources/tafsirs
 // ---------------------------------------------------------------------------
 
 export interface TafsirOption {
@@ -46,10 +54,16 @@ export interface TafsirOption {
 }
 
 export const TAFSIR_OPTIONS: TafsirOption[] = [
-  { id: 16, nameAr: "التفسير الميسر", nameEn: "Tafsir Muyassar", language: "ar" },
-  { id: 14, nameAr: "تفسير ابن كثير", nameEn: "Tafsir Ibn Kathir", language: "ar" },
-  { id: 91, nameAr: "تفسير السعدي", nameEn: "Tafsir As-Sa'di", language: "ar" },
-  { id: 169, nameAr: "ابن كثير (مختصر)", nameEn: "Ibn Kathir (Abridged)", language: "en" },
+  { id: 16,  nameAr: "التفسير الميسر",               nameEn: "Tafsir Muyassar",           language: "ar" },
+  { id: 14,  nameAr: "تفسير ابن كثير",               nameEn: "Tafsir Ibn Kathir",         language: "ar" },
+  { id: 91,  nameAr: "تفسير السعدي",                 nameEn: "Tafsir As-Sa'di",           language: "ar" },
+  { id: 15,  nameAr: "تفسير الطبري",                 nameEn: "Tafsir al-Tabari",          language: "ar" },
+  { id: 90,  nameAr: "تفسير القرطبي",                nameEn: "Al-Qurtubi",                language: "ar" },
+  { id: 93,  nameAr: "التفسير الوسيط (طنطاوي)",       nameEn: "Al-Wasit (Tantawi)",        language: "ar" },
+  { id: 94,  nameAr: "تفسير البغوي",                 nameEn: "Tafsir Al-Baghawi",         language: "ar" },
+  { id: 157, nameAr: "في ظلال القرآن",               nameEn: "Fi Zilal al-Quran",         language: "ar" },
+  { id: 169, nameAr: "ابن كثير (مختصر إنجليزي)",      nameEn: "Ibn Kathir (Abridged EN)",  language: "en" },
+  { id: 168, nameAr: "معارف القرآن (إنجليزي)",        nameEn: "Ma'arif al-Qur'an (EN)",    language: "en" },
 ];
 
 // ---------------------------------------------------------------------------
@@ -71,7 +85,7 @@ interface AppState {
 
   // Tafsir & Reciter preferences
   selectedTafsirId: number;
-  selectedReciterId: string;
+  selectedReciterId: number;
 
   // Actions — Khatma
   setKhatmaGoalDays: (days: number | null) => void;
@@ -89,7 +103,7 @@ interface AppState {
   setUserName: (name: string) => void;
   setQuranFontSize: (size: number) => void;
   setSelectedTafsirId: (id: number) => void;
-  setSelectedReciterId: (id: string) => void;
+  setSelectedReciterId: (id: number) => void;
 
   // Actions — Reset
   resetAllProgress: () => void;
@@ -115,8 +129,8 @@ export const useAppStore = create<AppState>()(
       quranFontSize: 24,
 
       // ── Tafsir & Reciter preferences ─────────────────────────────────
-      selectedTafsirId: 16, // Tafsir Muyassar (Arabic)
-      selectedReciterId: "husary", // Al-Husary
+      selectedTafsirId: 16,  // Tafsir Muyassar (Arabic)
+      selectedReciterId: 6,  // Al-Husary
 
       // ── Khatma actions ─────────────────────────────────────────────────
       setKhatmaGoalDays: (days) => set({ khatmaGoalDays: days }),
@@ -205,7 +219,7 @@ export const useAppStore = create<AppState>()(
     }),
     {
       name: "athar-storage",
-      version: 2,
+      version: 3,
       storage: createJSONStorage(() => localStorage),
       migrate: (persistedState: unknown, version: number) => {
         const state = persistedState as Record<string, unknown>;
@@ -225,6 +239,18 @@ export const useAppStore = create<AppState>()(
           // ── Migration from v1 → v2 ──────────────────────────────────
           if (state.selectedTafsirId === undefined) state.selectedTafsirId = 16;
           if (state.selectedReciterId === undefined) state.selectedReciterId = "husary";
+        }
+
+        if (version < 3) {
+          // ── Migration from v2 → v3 ──────────────────────────────────
+          // selectedReciterId changed from string to numeric API ID
+          const OLD_TO_NEW: Record<string, number> = {
+            husary: 6, mishary: 7, sudais: 3, minshawi: 9, basit: 2,
+          };
+          const old = state.selectedReciterId;
+          if (typeof old === "string") {
+            state.selectedReciterId = OLD_TO_NEW[old] ?? 6;
+          }
         }
 
         return state as unknown as AppState;
