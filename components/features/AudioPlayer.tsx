@@ -109,6 +109,42 @@ export function AudioPlayer({ audioUrl, surahName, reciterName, isLoading: urlLo
     }
   }, [isPlaying, audioUrl]);
 
+  // Background Audio & Lock Screen Controls
+  useEffect(() => {
+    if ("mediaSession" in navigator) {
+      navigator.mediaSession.metadata = new MediaMetadata({
+        title: surahName,
+        artist: reciterName,
+        album: "أثر - Athar PWA",
+        artwork: [
+          { src: "/icons/icon-192x192.png", sizes: "192x192", type: "image/png" },
+          { src: "/icons/icon-512x512.png", sizes: "512x512", type: "image/png" }
+        ]
+      });
+
+      // Tie native lock-screen actions to our player state
+      navigator.mediaSession.setActionHandler("play", () => {
+        if (audioRef.current && !isPlaying) {
+           audioRef.current.play().then(() => setIsPlaying(true)).catch(() => {});
+        }
+      });
+      navigator.mediaSession.setActionHandler("pause", () => {
+        if (audioRef.current && isPlaying) {
+           audioRef.current.pause();
+           setIsPlaying(false);
+        }
+      });
+    }
+
+    // Cleanup
+    return () => {
+      if ("mediaSession" in navigator) {
+        navigator.mediaSession.setActionHandler("play", null);
+        navigator.mediaSession.setActionHandler("pause", null);
+      }
+    };
+  }, [surahName, reciterName, isPlaying]);
+
   const showLoading = urlLoading || (!audioReady && !audioError && audioUrl !== "");
   const isDisabled = !audioUrl || audioError;
 

@@ -61,9 +61,9 @@ export default async function HadithSectionPage({ params }: PageProps) {
 
   if (!data || !meta) {
     return (
-      <div className="flex flex-col h-screen bg-slate-950 text-slate-200">
-        <header className="px-4 py-6 border-b border-white/10 flex items-center">
-          <Link href={`/library/hadith/${collection}`} className="p-2 -mr-2 rounded-full hover:bg-white/10">
+      <div className="flex flex-col h-screen bg-[#FDFBF7] text-slate-800">
+        <header className="px-4 py-6 border-b border-slate-100 flex items-center">
+          <Link href={`/library/hadith/${collection}`} className="p-2 -mr-2 rounded-full hover:bg-slate-100">
             <ChevronRight size={24} />
           </Link>
           <span className="flex-1 text-center font-bold">خطأ في تحميل الأحاديث</span>
@@ -77,17 +77,17 @@ export default async function HadithSectionPage({ params }: PageProps) {
   const isSahihCollection = collection === "bukhari" || collection === "muslim";
 
   return (
-    <div className="flex flex-col min-h-screen bg-slate-950 text-slate-100 selection:bg-emerald-500/30">
-      <header className="sticky top-0 z-30 px-4 pt-10 pb-4 bg-slate-950/80 backdrop-blur-xl border-b border-emerald-900/30 safe-area-inset-top flex items-center shadow-lg shadow-black/50">
+    <div className="flex flex-col min-h-screen bg-[#FDFBF7] text-slate-800 selection:bg-emerald-100">
+      <header className="sticky top-0 z-30 px-4 pt-10 pb-4 bg-[#FDFBF7]/95 border-b border-slate-100 safe-area-inset-top flex items-center shadow-sm">
         <Link 
           href={`/library/hadith/${collection}`} 
-          className="p-2 -mr-2 rounded-full hover:bg-white/10 transition-colors active:bg-white/20 text-slate-400 hover:text-emerald-400"
+          className="p-2 -mr-2 rounded-full hover:bg-slate-100 transition-colors active:bg-slate-200 text-slate-500 hover:text-slate-700"
         >
           <ChevronRight size={26} strokeWidth={2.5} />
         </Link>
         <div className="flex-1 text-center pl-6 pr-2">
-          <h1 className="text-[17px] font-bold text-white tracking-tight line-clamp-1 font-arabic" dir="rtl">{sectionName}</h1>
-          <p className="text-[10px] font-bold text-emerald-400/80 tracking-widest mt-1 uppercase">
+          <h1 className="text-[17px] font-bold text-slate-900 tracking-tight line-clamp-1 font-arabic" dir="rtl">{sectionName}</h1>
+          <p className="text-[10px] font-bold text-slate-400 tracking-widest mt-1 uppercase">
             كتاب {section} • {meta.nameAr}
           </p>
         </div>
@@ -99,26 +99,26 @@ export default async function HadithSectionPage({ params }: PageProps) {
             const { narrator, matn } = splitHadithText(hadith.text);
 
             return (
-              <div key={hadith.hadithnumber} className="bg-slate-900/50 backdrop-blur-sm rounded-[24px] p-6 shadow-[0_2px_24px_rgba(0,0,0,0.3)] border border-slate-800 hover:border-emerald-500/30 transition-colors">
-                <div className="flex items-center justify-between mb-6 border-b border-slate-800 pb-4" dir="rtl">
-                  <span className="flex items-center justify-center min-w-[2.5rem] px-3 h-8 rounded-full bg-emerald-950/50 border border-emerald-900/50 text-emerald-400 text-xs font-bold font-sans shadow-inner">
+              <div key={hadith.hadithnumber} className="bg-white rounded-[24px] p-6 shadow-sm border border-slate-100 transition-colors">
+                <div className="flex items-center justify-between mb-6 border-b border-slate-50 pb-4" dir="rtl">
+                  <span className="flex items-center justify-center min-w-[2.5rem] px-3 h-8 rounded-full bg-slate-50 border border-slate-100 text-slate-500 text-xs font-bold font-sans">
                     {hadith.hadithnumber}
                   </span>
                   
                   <div className="flex gap-2">
                     {/* Force Sahih badge for Bukhari/Muslim if no grade exists explicitly */}
                     {(isSahihCollection || (hadith.grades && hadith.grades.some(g => g.grade.toLowerCase().includes("sahih")))) && (
-                      <span className="text-[10px] font-bold text-emerald-400 bg-emerald-950/40 border border-emerald-900/50 px-3 py-1.5 rounded-lg shadow-sm shadow-emerald-900/20">
+                      <span className="text-[10px] font-bold text-emerald-700 bg-emerald-50 border border-emerald-100/50 px-3 py-1.5 rounded-lg">
                         صحيح
                       </span>
                     )}
                     {hadith.grades && hadith.grades.some(g => g.grade.toLowerCase().includes("hasan")) && (
-                      <span className="text-[10px] font-bold text-blue-400 bg-blue-950/40 border border-blue-900/50 px-3 py-1.5 rounded-lg shadow-sm shadow-blue-900/20">
+                      <span className="text-[10px] font-bold text-blue-700 bg-blue-50 border border-blue-100/50 px-3 py-1.5 rounded-lg">
                         حسن
                       </span>
                     )}
                     {hadith.grades && hadith.grades.some(g => g.grade.toLowerCase().includes("da'if") || g.grade.toLowerCase().includes("weak")) && (
-                      <span className="text-[10px] font-bold text-red-400 bg-red-950/40 border border-red-900/50 px-3 py-1.5 rounded-lg shadow-sm shadow-red-900/20">
+                      <span className="text-[10px] font-bold text-amber-700 bg-amber-50 border border-amber-100/50 px-3 py-1.5 rounded-lg">
                         ضعيف
                       </span>
                     )}
@@ -127,21 +127,21 @@ export default async function HadithSectionPage({ params }: PageProps) {
                 
                 <div className="space-y-4 text-justify" dir="rtl">
                   {narrator && (
-                    <p className="font-arabic text-[17px] text-slate-400/90 leading-[2.2] tracking-wide">
+                    <p className="font-arabic text-[17px] text-slate-500 leading-[2.2] tracking-wide">
                       {narrator}
                     </p>
                   )}
-                  <p className="font-arabic text-[23px] font-bold text-slate-100 leading-[2.4] tracking-wide">
+                  <p className="font-arabic text-[23px] font-bold text-slate-900 leading-[2.4] tracking-wide">
                     {matn}
                   </p>
                 </div>
 
                 {/* Optional Additional Scholar Grades Array */}
                 {!isSahihCollection && hadith.grades && hadith.grades.length > 0 && (
-                  <div className="mt-6 pt-5 border-t border-slate-800/80 flex flex-wrap gap-2" dir="rtl">
+                  <div className="mt-6 pt-5 border-t border-slate-50 flex flex-wrap gap-2" dir="rtl">
                     {hadith.grades.map((g, idx) => (
-                      <div key={idx} className="bg-slate-800/50 text-slate-400 text-[10px] px-3 py-1.5 rounded-lg font-medium border border-slate-800 shadow-sm">
-                        {g.name}: <span className="font-bold text-slate-200 ml-1">{g.grade}</span>
+                      <div key={idx} className="bg-slate-50 text-slate-500 text-[10px] px-3 py-1.5 rounded-lg font-medium border border-slate-100">
+                        {g.name}: <span className="font-bold text-slate-700 ml-1">{g.grade}</span>
                       </div>
                     ))}
                   </div>
