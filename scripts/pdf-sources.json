@@ -1371,5 +1371,155 @@
     "description": "نسخة الناشر داخل التطبيق؛ بيانات النص وحقوقه في صفحات الكتاب.",
     "sourceUrl": "https://downloads.hindawi.org/books/48375831.pdf",
     "textRights": "arabic-public-domain"
+  },
+  {
+    "id": "hindawi-29373683",
+    "publisherId": "29373683",
+    "title": "العبرات",
+    "author": "مصطفى لطفي المنفلوطي",
+    "category": "قصص",
+    "description": "نسخة الناشر داخل التطبيق؛ بيانات النص وحقوقه في صفحات الكتاب.",
+    "sourceUrl": "https://downloads.hindawi.org/books/29373683.pdf",
+    "textRights": "arabic-public-domain"
+  },
+  {
+    "id": "hindawi-72707304",
+    "publisherId": "72707304",
+    "title": "سارة",
+    "author": "عباس محمود العقاد",
+    "category": "روايات",
+    "description": "نسخة الناشر داخل التطبيق؛ بيانات النص وحقوقه في صفحات الكتاب.",
+    "sourceUrl": "https://downloads.hindawi.org/books/72707304.pdf",
+    "textRights": "arabic-public-domain"
+  },
+  {
+    "id": "hindawi-94061468",
+    "publisherId": "94061468",
+    "title": "النظرات",
+    "author": "مصطفى لطفي المنفلوطي",
+    "category": "أدب",
+    "description": "نسخة الناشر داخل التطبيق؛ بيانات النص وحقوقه في صفحات الكتاب.",
+    "sourceUrl": "https://downloads.hindawi.org/books/94061468.pdf",
+    "textRights": "arabic-public-domain"
+  },
+  {
+    "id": "hindawi-42928303",
+    "publisherId": "42928303",
+    "title": "رسائل الأحزان: في فلسفة الجمال والحب",
+    "author": "مصطفى صادق الرافعي",
+    "category": "أدب",
+    "description": "نسخة الناشر داخل التطبيق؛ بيانات النص وحقوقه في صفحات الكتاب.",
+    "sourceUrl": "https://downloads.hindawi.org/books/42928303.pdf",
+    "textRights": "arabic-public-domain"
+  },
+  {
+    "id": "hindawi-63950852",
+    "publisherId": "63950852",
+    "title": "حديث عيسى بن هشام",
+    "author": "محمد المويلحي",
+    "category": "روايات",
+    "description": "نسخة الناشر داخل التطبيق؛ بيانات النص وحقوقه في صفحات الكتاب.",
+    "sourceUrl": "https://downloads.hindawi.org/books/63950852.pdf",
+    "textRights": "arabic-public-domain"
+  },
+  {
+    "id": "hindawi-62581958",
+    "publisherId": "62581958",
+    "title": "حديث القمر",
+    "author": "مصطفى صادق الرافعي",
+    "category": "أدب",
+    "description": "نسخة الناشر داخل التطبيق؛ بيانات النص وحقوقه في صفحات الكتاب.",
+    "sourceUrl": "https://downloads.hindawi.org/books/62581958.pdf",
+    "textRights": "arabic-public-domain"
+  },
+  {
+    "id": "hindawi-30272530",
+    "publisherId": "30272530",
+    "title": "طبائع الاستبداد ومصارع الاستعباد",
+    "author": "عبد الرحمن الكواكبي",
+    "category": "فلسفة",
+    "description": "نسخة الناشر داخل التطبيق؛ بيانات النص وحقوقه في صفحات الكتاب.",
+    "sourceUrl": "https://downloads.hindawi.org/books/30272530.pdf",
+    "textRights": "arabic-public-domain"
+  },
+  {
+    "id": "hindawi-28493759",
+    "publisherId": "28493759",
+    "title": "زينب",
+    "author": "محمد حسين هيكل",
+    "category": "روايات",
+    "description": "نسخة الناشر داخل التطبيق؛ بيانات النص وحقوقه في صفحات الكتاب.",
+    "sourceUrl": "https://downloads.hindawi.org/books/28493759.pdf",
+    "textRights": "arabic-public-domain"
+  },
+  {
+    "id": "hindawi-61379142",
+    "publisherId": "61379142",
+    "title": "وحي القلم",
+    "author": "مصطفى صادق الرافعي",
+    "category": "أدب",
+    "description": "نسخة الناشر داخل التطبيق؛ بيانات النص وحقوقه في صفحات الكتاب.",
+    "sourceUrl": "https://downloads.hindawi.org/books/61379142.pdf",
+    "textRights": "arabic-public-domain"
+  },
+  {
+    "id": "hindawi-64285973",
+    "publisherId": "64285973",
+    "title": "السحاب الأحمر",
+    "author": "مصطفى صادق الرافعي",
+    "category": "أدب",
+    "description": "نسخة الناشر داخل التطبيق؛ بيانات النص وحقوقه في صفحات الكتاب.",
+    "sourceUrl": "https://downloads.hindawi.org/books/64285973.pdf",
+    "textRights": "arabic-public-domain"
+  },
+  {
+    "id": "hindawi-19618179",
+    "publisherId": "19618179",
+    "title": "أوراق الورد",
+    "author": "مصطفى صادق الرافعي",
+    "category": "أدب",
+    "description": "نسخة الناشر داخل التطبيق؛ بيانات النص وحقوقه في صفحات الكتاب.",
+    "sourceUrl": "https://downloads.hindawi.org/books/19618179.pdf",
+    "textRights": "arabic-public-domain"
+  },
+  {
+    "id": "hindawi-62425297",
+    "publisherId": "62425297",
+    "title": "قمبيز",
+    "author": "أحمد شوقي",
+    "category": "مسرحيات",
+    "description": "نسخة الناشر داخل التطبيق؛ بيانات النص وحقوقه في صفحات الكتاب.",
+    "sourceUrl": "https://downloads.hindawi.org/books/62425297.pdf",
+    "textRights": "arabic-public-domain"
+  },
+  {
+    "id": "hindawi-79283830",
+    "publisherId": "79283830",
+    "title": "مجنون ليلى",
+    "author": "أحمد شوقي",
+    "category": "مسرحيات",
+    "description": "نسخة الناشر داخل التطبيق؛ بيانات النص وحقوقه في صفحات الكتاب.",
+    "sourceUrl": "https://downloads.hindawi.org/books/79283830.pdf",
+    "textRights": "arabic-public-domain"
+  },
+  {
+    "id": "hindawi-38057286",
+    "publisherId": "38057286",
+    "title": "مصرع كليوباترا",
+    "author": "أحمد شوقي",
+    "category": "مسرحيات",
+    "description": "نسخة الناشر داخل التطبيق؛ بيانات النص وحقوقه في صفحات الكتاب.",
+    "sourceUrl": "https://downloads.hindawi.org/books/38057286.pdf",
+    "textRights": "arabic-public-domain"
+  },
+  {
+    "id": "hindawi-86085746",
+    "publisherId": "86085746",
+    "title": "البخيلة",
+    "author": "أحمد شوقي",
+    "category": "مسرحيات",
+    "description": "نسخة الناشر داخل التطبيق؛ بيانات النص وحقوقه في صفحات الكتاب.",
+    "sourceUrl": "https://downloads.hindawi.org/books/86085746.pdf",
+    "textRights": "arabic-public-domain"
   }
 ]
