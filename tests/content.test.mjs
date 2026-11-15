@@ -2,6 +2,8 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { normalizeArabic } from '../lib/arabic.ts';
 import { COLLECTIONS, getCollectionInfo, getHadithSection } from '../lib/api/hadith.ts';
+import archiveBooks from '../lib/data/archive-books.json' with { type: 'json' };
+import { BOOKS, bookReaderHref } from '../lib/data/books.ts';
 
 test('Arabic search matches hamza, diacritics, tatweel and whitespace without modifying source', () => {
   assert.equal(normalizeArabic('  الأَرْبَعُون النَّوَوِيَّة  '), normalizeArabic('الاربعون النووية'));
@@ -11,6 +13,15 @@ test('Arabic library discovery folds numeric scripts and repeated spaces', () =>
   assert.equal(normalizeArabic('حول  العالم في ٨٠ يوماً'), normalizeArabic('حول العالم في 80 يوما'));
   assert.equal(normalizeArabic('١٧ رمضان'), normalizeArabic('17 رمضان'));
   assert.equal(normalizeArabic('۸۰'), '80');
+});
+test('Archive readers resolve only listed books to their fixed source', () => {
+  assert.ok(!archiveBooks.some(book => book.id === '../20210125_20210125_1200'));
+  for (const book of archiveBooks) {
+    assert.match(book.archiveId, /^[a-zA-Z0-9_-]+$/);
+    const entry = BOOKS.find(item => item.id === book.id);
+    assert.equal(entry?.readUrl, `https://archive.org/details/${book.archiveId}`);
+    assert.equal(bookReaderHref(entry), `/library/archive/${book.id}`);
+  }
 });
 
 test('Unsupported collection and malformed section never reach the provider', async () => {

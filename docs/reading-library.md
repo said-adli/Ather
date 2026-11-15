@@ -48,6 +48,22 @@ The importer checks the publisher document, author, title, page count and rights
 
 The PDF.js legacy browser build renders the original document inside the application. `/api/library/pdf/[id]` serves pinned publisher bytes in chunks of at most 1 MiB. Requests require an allowlisted ID, valid bounds and the current source version. ETag changes or truncated responses fail visibly. Original publisher credits and license links remain accessible. PDFs and Hadith API collections require connectivity; full offline reading is not promised.
 
+<!-- coderabbit-ai-generated:v1 -->
+
+<!-- coderabbit-ai-generated-section:v1:0b436ce478b10d7db8e1ae84cdf4c77ac6fc23abe312d72fdd32001f5e2d4d2b -->
+
+## Internet Archive editions
+
+<!-- coderabbit-ai-generated:v1 -->
+
+<!-- coderabbit-ai-generated-section:v1:f6649e464320f6d035206e907a1807a1abb6569c56cd10183dd1a2d0b2955e93 -->
+
+`lib/data/archive-books.json` lists selected third-party editions. Their internal reader embeds Internet Archive directly and links to the source; availability, page navigation, and progress depend on that service. Unlike publisher PDFs above, these editions do not pass the PDF importer’s text-rights verification. Review the source and reader availability before adding an entry; never treat an archive identifier as permission to proxy arbitrary URLs.
+
+<!-- /coderabbit-ai-generated:v1 -->
+
 ## Production
 
 The connected Vercel project publishes production from `main` at https://ather-six.vercel.app. Pushing the task branch creates a preview; it does not update the production domain. Verify the production deployment status and an actual internal reader after publishing.
+
+<!-- /coderabbit-ai-generated:v1 -->

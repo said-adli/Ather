@@ -27,7 +27,7 @@ export default function LibraryPage() {
   return <div className="min-h-full bg-[#FDFBF7]" dir="rtl">
     <header className="px-5 pt-8 pb-5 border-b border-amber-900/5 bg-[#FDFBF7]">
       <div className="flex items-center gap-3 text-emerald-800"><LibraryBig size={30} /><h1 className="text-3xl font-bold">المكتبة</h1></div>
-      <p className="text-sm text-slate-500 mt-3 leading-7">رفّك للقراءة؛ كتب وأحاديث وروايات، وموضعك محفوظ.</p>
+      <p className="text-sm text-slate-500 mt-3 leading-7">رفّك للقراءة؛ كتب وأحاديث وروايات في مكان واحد.</p>
       <div role="tablist" aria-label="أقسام المكتبة" className="flex gap-1 bg-slate-100 p-1 rounded-2xl mt-5">
         {([['books', 'الكتب'], ['novels', 'الروايات والقصص'], ['hadith', 'الأحاديث']] as const).map(([key, label]) => <button key={key} role="tab" id={`tab-${key}`} aria-selected={tab === key} aria-controls="library-panel" onClick={() => changeTab(key)} className={`flex-1 py-3 text-sm font-bold rounded-xl ${tab === key ? 'bg-white text-emerald-800 shadow-sm' : 'text-slate-600'}`}>{label}</button>)}
       </div>
@@ -44,7 +44,7 @@ export default function LibraryPage() {
         {!collections.length && <p className="text-center p-8 text-slate-500">لا توجد مجموعة تطابق بحثك.</p>}
       </> : <>
         {tab === 'books' && <div className="flex gap-2 overflow-x-auto pb-4" aria-label="تصنيف الكتب">{['الكل', ...BOOK_CATEGORIES.filter(cat => !isStory(cat))].map(cat => <button key={cat} aria-pressed={cat === category} onClick={() => { setCategory(cat); setLimit(24); }} className={`shrink-0 px-4 py-2 rounded-full text-xs font-bold border ${cat === category ? 'bg-emerald-800 border-emerald-800 text-white' : 'bg-white border-slate-200 text-slate-600'}`}>{cat}</button>)}</div>}
-        <p className="text-xs text-emerald-800 mb-4 leading-6">كل العناوين المعروضة تُقرأ داخل أثر. مجموعات الحديث والنسخ المصوّرة تحتاج إلى اتصال.</p>
+        <p className="text-xs text-emerald-800 mb-4 leading-6">كل العناوين المعروضة تُقرأ داخل أثر. مجموعات الحديث والنسخ المصوّرة والكتب من الإنترنت أرشيف تحتاج إلى اتصال.</p>
         <label className="flex items-center justify-between gap-3 mb-4 text-xs text-slate-600">ترتيب العناوين<select aria-label="ترتيب العناوين" value={sort} onChange={e => { setSort(e.target.value); setLimit(24); }} className="border border-slate-200 rounded-lg p-2 bg-white"><option value="title">حسب العنوان</option><option value="author">حسب المؤلف</option></select></label>
         <p className="text-xs text-slate-500 mb-4" role="status">{books.length} عنواناً {tab === 'novels' && '· أعمال أدبية، وليست مراجع دينية'}</p>
         <div className="space-y-4">{books.slice(0, limit).map(book => {

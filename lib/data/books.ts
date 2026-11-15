@@ -1,5 +1,6 @@
 import pdfLibrary from './pdf-library.json' with { type: 'json' };
 import expandedReading from './reading-catalog.json' with { type: 'json' };
+import archiveBooks from './archive-books.json' with { type: 'json' };
 
 export interface Book {
   id: string;
@@ -141,7 +142,7 @@ const HADITH_BOOKS: Book[] = [
 export const BOOKS: Book[] = [...ISLAMIC_BOOKS, ...READING_ADDITIONS]
   .map(book => expandedById.get(book.id) ?? book)
   .concat(expandedBooks.filter(book => ![...ISLAMIC_BOOKS, ...READING_ADDITIONS].some(existing => existing.id === book.id)))
-  .concat(HADITH_BOOKS, pdfLibrary)
+  .concat(HADITH_BOOKS, pdfLibrary, archiveBooks.map(book => ({ ...book, readUrl: `https://archive.org/details/${book.archiveId}`, readerHref: `/library/archive/${book.id}` })))
   .filter(book => book.readingId || book.readerHref);
 export function bookReaderHref(book: Book): string | null {
   return book.readerHref ?? (book.readingId ? `/library/books/${book.readingId}` : null);
