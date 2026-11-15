@@ -190,6 +190,16 @@
     "readerHref": "/library/pdf/hindawi-19302826"
   },
   {
+    "id": "hindawi-19618179",
+    "title": "أوراق الورد",
+    "author": "مصطفى صادق الرافعي",
+    "category": "أدب",
+    "description": "نسخة الناشر داخل التطبيق؛ بيانات النص وحقوقه في صفحات الكتاب.",
+    "pageCount": 230,
+    "readUrl": "https://downloads.hindawi.org/books/19618179.pdf",
+    "readerHref": "/library/pdf/hindawi-19618179"
+  },
+  {
     "id": "hindawi-19750531",
     "title": "فيلمَر",
     "author": "هربرت جورج ويلز",
@@ -300,6 +310,26 @@
     "readerHref": "/library/pdf/hindawi-28269058"
   },
   {
+    "id": "hindawi-28493759",
+    "title": "زينب",
+    "author": "محمد حسين هيكل",
+    "category": "روايات",
+    "description": "نسخة الناشر داخل التطبيق؛ بيانات النص وحقوقه في صفحات الكتاب.",
+    "pageCount": 194,
+    "readUrl": "https://downloads.hindawi.org/books/28493759.pdf",
+    "readerHref": "/library/pdf/hindawi-28493759"
+  },
+  {
+    "id": "hindawi-29373683",
+    "title": "العبرات",
+    "author": "مصطفى لطفي المنفلوطي",
+    "category": "قصص",
+    "description": "نسخة الناشر داخل التطبيق؛ بيانات النص وحقوقه في صفحات الكتاب.",
+    "pageCount": 136,
+    "readUrl": "https://downloads.hindawi.org/books/29373683.pdf",
+    "readerHref": "/library/pdf/hindawi-29373683"
+  },
+  {
     "id": "hindawi-29414027",
     "title": "عُصبة ذوي الشعر الأحمر",
     "author": "آرثر كونان دويل",
@@ -328,6 +358,16 @@
     "pageCount": 16,
     "readUrl": "https://downloads.hindawi.org/books/30246196.pdf",
     "readerHref": "/library/pdf/hindawi-30246196"
+  },
+  {
+    "id": "hindawi-30272530",
+    "title": "طبائع الاستبداد ومصارع الاستعباد",
+    "author": "عبد الرحمن الكواكبي",
+    "category": "فلسفة",
+    "description": "نسخة الناشر داخل التطبيق؛ بيانات النص وحقوقه في صفحات الكتاب.",
+    "pageCount": 118,
+    "readUrl": "https://downloads.hindawi.org/books/30272530.pdf",
+    "readerHref": "/library/pdf/hindawi-30272530"
   },
   {
     "id": "hindawi-30272952",
@@ -388,6 +428,16 @@
     "pageCount": 26,
     "readUrl": "https://downloads.hindawi.org/books/37419061.pdf",
     "readerHref": "/library/pdf/hindawi-37419061"
+  },
+  {
+    "id": "hindawi-38057286",
+    "title": "مصرع كليوباترا",
+    "author": "أحمد شوقي",
+    "category": "مسرحيات",
+    "description": "نسخة الناشر داخل التطبيق؛ بيانات النص وحقوقه في صفحات الكتاب.",
+    "pageCount": 112,
+    "readUrl": "https://downloads.hindawi.org/books/38057286.pdf",
+    "readerHref": "/library/pdf/hindawi-38057286"
   },
   {
     "id": "hindawi-39482082",
@@ -468,6 +518,16 @@
     "pageCount": 20,
     "readUrl": "https://downloads.hindawi.org/books/42905709.pdf",
     "readerHref": "/library/pdf/hindawi-42905709"
+  },
+  {
+    "id": "hindawi-42928303",
+    "title": "رسائل الأحزان: في فلسفة الجمال والحب",
+    "author": "مصطفى صادق الرافعي",
+    "category": "أدب",
+    "description": "نسخة الناشر داخل التطبيق؛ بيانات النص وحقوقه في صفحات الكتاب.",
+    "pageCount": 108,
+    "readUrl": "https://downloads.hindawi.org/books/42928303.pdf",
+    "readerHref": "/library/pdf/hindawi-42928303"
   },
   {
     "id": "hindawi-46836370",
@@ -600,6 +660,16 @@
     "readerHref": "/library/pdf/hindawi-60946953"
   },
   {
+    "id": "hindawi-61379142",
+    "title": "وحي القلم",
+    "author": "مصطفى صادق الرافعي",
+    "category": "أدب",
+    "description": "نسخة الناشر داخل التطبيق؛ بيانات النص وحقوقه في صفحات الكتاب.",
+    "pageCount": 1188,
+    "readUrl": "https://downloads.hindawi.org/books/61379142.pdf",
+    "readerHref": "/library/pdf/hindawi-61379142"
+  },
+  {
     "id": "hindawi-61520283",
     "title": "مغامرة رَجل الطلاء المتقاعد",
     "author": "آرثر كونان دويل",
@@ -640,6 +710,26 @@
     "readerHref": "/library/pdf/hindawi-62064075"
   },
   {
+    "id": "hindawi-62425297",
+    "title": "قمبيز",
+    "author": "أحمد شوقي",
+    "category": "مسرحيات",
+    "description": "نسخة الناشر داخل التطبيق؛ بيانات النص وحقوقه في صفحات الكتاب.",
+    "pageCount": 148,
+    "readUrl": "https://downloads.hindawi.org/books/62425297.pdf",
+    "readerHref": "/library/pdf/hindawi-62425297"
+  },
+  {
+    "id": "hindawi-62581958",
+    "title": "حديث القمر",
+    "author": "مصطفى صادق الرافعي",
+    "category": "أدب",
+    "description": "نسخة الناشر داخل التطبيق؛ بيانات النص وحقوقه في صفحات الكتاب.",
+    "pageCount": 80,
+    "readUrl": "https://downloads.hindawi.org/books/62581958.pdf",
+    "readerHref": "/library/pdf/hindawi-62581958"
+  },
+  {
     "id": "hindawi-63130482",
     "title": "مغامرة المحقق المحتضر",
     "author": "آرثر كونان دويل",
@@ -658,6 +748,26 @@
     "pageCount": 164,
     "readUrl": "https://downloads.hindawi.org/books/63814928.pdf",
     "readerHref": "/library/pdf/hindawi-63814928"
+  },
+  {
+    "id": "hindawi-63950852",
+    "title": "حديث عيسى بن هشام",
+    "author": "محمد المويلحي",
+    "category": "روايات",
+    "description": "نسخة الناشر داخل التطبيق؛ بيانات النص وحقوقه في صفحات الكتاب.",
+    "pageCount": 326,
+    "readUrl": "https://downloads.hindawi.org/books/63950852.pdf",
+    "readerHref": "/library/pdf/hindawi-63950852"
+  },
+  {
+    "id": "hindawi-64285973",
+    "title": "السحاب الأحمر",
+    "author": "مصطفى صادق الرافعي",
+    "category": "أدب",
+    "description": "نسخة الناشر داخل التطبيق؛ بيانات النص وحقوقه في صفحات الكتاب.",
+    "pageCount": 98,
+    "readUrl": "https://downloads.hindawi.org/books/64285973.pdf",
+    "readerHref": "/library/pdf/hindawi-64285973"
   },
   {
     "id": "hindawi-64860839",
@@ -820,6 +930,16 @@
     "readerHref": "/library/pdf/hindawi-72647050"
   },
   {
+    "id": "hindawi-72707304",
+    "title": "سارة",
+    "author": "عباس محمود العقاد",
+    "category": "روايات",
+    "description": "نسخة الناشر داخل التطبيق؛ بيانات النص وحقوقه في صفحات الكتاب.",
+    "pageCount": 120,
+    "readUrl": "https://downloads.hindawi.org/books/72707304.pdf",
+    "readerHref": "/library/pdf/hindawi-72707304"
+  },
+  {
     "id": "hindawi-72752962",
     "title": "وادي العناكب",
     "author": "هربرت جورج ويلز",
@@ -918,6 +1038,16 @@
     "pageCount": 216,
     "readUrl": "https://downloads.hindawi.org/books/75919582.pdf",
     "readerHref": "/library/pdf/hindawi-75919582"
+  },
+  {
+    "id": "hindawi-79283830",
+    "title": "مجنون ليلى",
+    "author": "أحمد شوقي",
+    "category": "مسرحيات",
+    "description": "نسخة الناشر داخل التطبيق؛ بيانات النص وحقوقه في صفحات الكتاب.",
+    "pageCount": 134,
+    "readUrl": "https://downloads.hindawi.org/books/79283830.pdf",
+    "readerHref": "/library/pdf/hindawi-79283830"
   },
   {
     "id": "hindawi-80282026",
@@ -1150,6 +1280,16 @@
     "readerHref": "/library/pdf/hindawi-85247571"
   },
   {
+    "id": "hindawi-86085746",
+    "title": "البخيلة",
+    "author": "أحمد شوقي",
+    "category": "مسرحيات",
+    "description": "نسخة الناشر داخل التطبيق؛ بيانات النص وحقوقه في صفحات الكتاب.",
+    "pageCount": 98,
+    "readUrl": "https://downloads.hindawi.org/books/86085746.pdf",
+    "readerHref": "/library/pdf/hindawi-86085746"
+  },
+  {
     "id": "hindawi-90590479",
     "title": "في العام ٢٨٨٩",
     "author": "جول فيرن",
@@ -1258,6 +1398,16 @@
     "pageCount": 596,
     "readUrl": "https://downloads.hindawi.org/books/93861582.pdf",
     "readerHref": "/library/pdf/hindawi-93861582"
+  },
+  {
+    "id": "hindawi-94061468",
+    "title": "النظرات",
+    "author": "مصطفى لطفي المنفلوطي",
+    "category": "أدب",
+    "description": "نسخة الناشر داخل التطبيق؛ بيانات النص وحقوقه في صفحات الكتاب.",
+    "pageCount": 588,
+    "readUrl": "https://downloads.hindawi.org/books/94061468.pdf",
+    "readerHref": "/library/pdf/hindawi-94061468"
   },
   {
     "id": "hindawi-94073036",
