@@ -1,7 +1,8 @@
 "use client";
 
+import { useHydrated } from "@/lib/hooks/useHydrated";
+
 import { useAppStore } from "@/lib/store/useAppStore";
-import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Target, ChevronUp } from "lucide-react";
 import Link from "next/link";
@@ -9,15 +10,12 @@ import Link from "next/link";
 const TOTAL_AYAHS = 6236;
 
 export default function KhatmaPage() {
-  const [mounted, setMounted] = useState(false);
+  const mounted = useHydrated();
   const khatmaGoalDays = useAppStore((state) => state.khatmaGoalDays);
   const readAyahs = useAppStore((state) => state.readAyahs);
   const setKhatmaGoalDays = useAppStore((state) => state.setKhatmaGoalDays);
   const addReadAyahs = useAppStore((state) => state.addReadAyahs);
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   const progress = mounted ? Math.min(100, Math.round((readAyahs / TOTAL_AYAHS) * 100)) : 0;
   const ayahsPerDay = mounted && khatmaGoalDays ? Math.ceil(TOTAL_AYAHS / khatmaGoalDays) : 0;

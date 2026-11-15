@@ -5,6 +5,8 @@ export interface Book {
   category: string;
   description: string;
   readUrl: string;
+  readingId?: string;
+  readerHref?: string;
 }
 
 export const ISLAMIC_BOOKS: Book[] = [
@@ -18,6 +20,7 @@ export const ISLAMIC_BOOKS: Book[] = [
   },
   {
     id: "daa",
+    readingId: "daa",
     title: "الداء والدواء",
     author: "ابن قيم الجوزية",
     category: "تزكية",
@@ -42,6 +45,7 @@ export const ISLAMIC_BOOKS: Book[] = [
   },
   {
     id: "wasitiyyah",
+    readingId: "wasitiyyah",
     title: "العقيدة الواسطية",
     author: "ابن تيمية",
     category: "عقيدة",
@@ -50,6 +54,7 @@ export const ISLAMIC_BOOKS: Book[] = [
   },
   {
     id: "tawheed",
+    readingId: "tawheed",
     title: "كتاب التوحيد",
     author: "محمد بن عبد الوهاب",
     category: "عقيدة",
@@ -58,6 +63,7 @@ export const ISLAMIC_BOOKS: Book[] = [
   },
   {
     id: "arbaeen",
+    readerHref: "/library/hadith/nawawi/1",
     title: "الأربعون النووية",
     author: "النووي",
     category: "حديث",
@@ -106,4 +112,17 @@ export const ISLAMIC_BOOKS: Book[] = [
   }
 ];
 
-export const BOOK_CATEGORIES = Array.from(new Set(ISLAMIC_BOOKS.map(b => b.category)));
+export const READING_ADDITIONS: Book[] = [
+  { id: "adab", readingId: "adab", title: "الأدب المفرد", author: "الإمام البخاري", category: "حديث", description: "كتاب في الآداب وصلة الرحم؛ أحاديثه تحتاج إلى النظر في تخريج كل حديث.", readUrl: "https://ar.wikisource.org/wiki/الأدب_المفرد" },
+  { id: "broken-wings", readingId: "broken-wings", title: "الأجنحة المتكسرة", author: "جبران خليل جبران", category: "روايات", description: "رواية أدبية عن الحب والحرية والمجتمع، نشرت سنة 1912.", readUrl: "https://ar.wikisource.org/wiki/الأجنحة_المتكسرة" },
+  { id: "hayy", readingId: "hayy", title: "حي بن يقظان", author: "ابن طفيل", category: "روايات", description: "قصة فلسفية تراثية تتأمل المعرفة والإنسان والطبيعة.", readUrl: "https://ar.wikisource.org/wiki/حي_بن_يقظان" },
+  { id: "kalila", readingId: "kalila", title: "كليلة ودمنة", author: "عبد الله بن المقفع", category: "أدب", description: "حكايات تراثية على ألسنة الحيوان، في الحكمة والأخلاق والسياسة.", readUrl: "https://ar.wikisource.org/wiki/كليلة_ودمنة" },
+  { id: "bukhala", readingId: "bukhala", title: "البخلاء", author: "الجاحظ", category: "أدب", description: "قصص وأخبار أدبية تصور البخل وأحوال الناس بأسلوب ساخر.", readUrl: "https://ar.wikisource.org/wiki/البخلاء" },
+];
+
+export const BOOKS: Book[] = [...ISLAMIC_BOOKS, ...READING_ADDITIONS];
+export function bookReaderHref(book: Book): string | null {
+  return book.readerHref ?? (book.readingId ? `/library/books/${book.readingId}` : null);
+}
+
+export const BOOK_CATEGORIES = Array.from(new Set(BOOKS.map(b => b.category)));

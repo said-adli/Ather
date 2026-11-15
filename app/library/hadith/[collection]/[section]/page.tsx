@@ -15,40 +15,6 @@ try {
   console.error("Failed to load hadith-dict.json", e);
 }
 
-// Regex Helper to split Sanad (Narrator chain) from Matn (Core text)
-function splitHadithText(text: string) {
-  const splitKeywords = [
-    "قَالَ رَسُولُ اللَّهِ",
-    "قَالَ النَّبِيُّ",
-    "أَنَّ رَسُولَ اللَّهِ",
-    "أَنَّ النَّبِيَّ",
-    "سَمِعْتُ رَسُولَ اللَّهِ",
-    "يَقُولُ رَسُولُ اللَّهِ",
-    "عَنِ النَّبِيِّ",
-    "قَالَ: سَمِعْتُ النَّبِيَّ",
-    "قَالَ: «",
-    "يَقُولُ: «",
-    "قَالَ لِي رَسُولُ اللَّهِ",
-    "قَالَ: ",
-    "يَقُولُ: "
-  ];
-
-  let narrator = "";
-  let matn = text;
-
-  for (const keyword of splitKeywords) {
-    const index = text.indexOf(keyword);
-    // Ensure we don't split too early (e.g., if the keyword is the very first word)
-    if (index > 20) { 
-      narrator = text.substring(0, index).trim();
-      matn = text.substring(index).trim();
-      break; 
-    }
-  }
-
-  return { narrator: narrator || null, matn };
-}
-
 interface PageProps {
   params: Promise<{ collection: string; section: string }>;
 }
@@ -74,7 +40,6 @@ export default async function HadithSectionPage({ params }: PageProps) {
 
   const rawSectionName = data.metadata.section[section];
   const sectionName = hadithDict[rawSectionName?.trim()] || rawSectionName || `كتاب ${section}`;
-  const isSahihCollection = collection === "bukhari" || collection === "muslim";
 
   return (
     <div className="flex flex-col min-h-screen bg-[#FDFBF7] text-slate-800 selection:bg-emerald-100">
@@ -94,9 +59,9 @@ export default async function HadithSectionPage({ params }: PageProps) {
       </header>
 
       <main className="flex-1 px-4 py-8 pb-24 max-w-3xl mx-auto w-full">
+        <p className="mb-5 text-xs leading-7 text-slate-500">المصدر الرقمي: Hadith API، النسخة العربية. النص والتخريج كما وردا في المصدر؛ تُعرض أحكام المحدثين بأسمائهم عند توفرها، دون استنتاج حكم آلي.</p>
         <div className="space-y-6">
           {data.hadiths.map((hadith) => {
-            const { narrator, matn } = splitHadithText(hadith.text);
 
             return (
               <div key={hadith.hadithnumber} className="bg-white rounded-[24px] p-6 shadow-sm border border-slate-100 transition-colors">
@@ -105,39 +70,18 @@ export default async function HadithSectionPage({ params }: PageProps) {
                     {hadith.hadithnumber}
                   </span>
                   
-                  <div className="flex gap-2">
-                    {/* Force Sahih badge for Bukhari/Muslim if no grade exists explicitly */}
-                    {(isSahihCollection || (hadith.grades && hadith.grades.some(g => g.grade.toLowerCase().includes("sahih")))) && (
-                      <span className="text-[10px] font-bold text-emerald-700 bg-emerald-50 border border-emerald-100/50 px-3 py-1.5 rounded-lg">
-                        صحيح
-                      </span>
-                    )}
-                    {hadith.grades && hadith.grades.some(g => g.grade.toLowerCase().includes("hasan")) && (
-                      <span className="text-[10px] font-bold text-blue-700 bg-blue-50 border border-blue-100/50 px-3 py-1.5 rounded-lg">
-                        حسن
-                      </span>
-                    )}
-                    {hadith.grades && hadith.grades.some(g => g.grade.toLowerCase().includes("da'if") || g.grade.toLowerCase().includes("weak")) && (
-                      <span className="text-[10px] font-bold text-amber-700 bg-amber-50 border border-amber-100/50 px-3 py-1.5 rounded-lg">
-                        ضعيف
-                      </span>
-                    )}
-                  </div>
+                  <span className="text-xs text-slate-500">{meta.nameAr}</span>
                 </div>
                 
                 <div className="space-y-4 text-justify" dir="rtl">
-                  {narrator && (
-                    <p className="font-arabic text-[17px] text-slate-500 leading-[2.2] tracking-wide">
-                      {narrator}
-                    </p>
-                  )}
                   <p className="font-arabic text-[23px] font-bold text-slate-900 leading-[2.4] tracking-wide">
-                    {matn}
+                    {hadith.text}
                   </p>
                 </div>
 
-                {/* Optional Additional Scholar Grades Array */}
-                {!isSahihCollection && hadith.grades && hadith.grades.length > 0 && (
+                {(!hadith.grades || hadith.grades.length === 0) && <p className="mt-4 text-xs text-slate-500">لا يتوفر حكم مفصل في هذه النسخة.</p>}
+                {/* Scholar grades are quoted verbatim with attribution. */}
+                {hadith.grades && hadith.grades.length > 0 && (
                   <div className="mt-6 pt-5 border-t border-slate-50 flex flex-wrap gap-2" dir="rtl">
                     {hadith.grades.map((g, idx) => (
                       <div key={idx} className="bg-slate-50 text-slate-500 text-[10px] px-3 py-1.5 rounded-lg font-medium border border-slate-100">

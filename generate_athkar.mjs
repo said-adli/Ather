@@ -1,10 +1,11 @@
 import fs from 'fs';
+import { dhikrCounter } from './lib/data/dhikr-counter.mjs';
 
 const data = JSON.parse(fs.readFileSync('hisn_almuslim_raw.json', 'utf8'));
 
 let tsOutput = `export type AthkarCategory = string;\n\n`;
 tsOutput += `export interface AthkarCategoryMeta {\n  id: AthkarCategory;\n  title: string;\n  icon: string;\n}\n\n`;
-tsOutput += `export interface AthkarItem {\n  id: string;\n  category: AthkarCategory;\n  text: string;\n  count: number;\n  reference: string;\n}\n\n`;
+tsOutput += `export interface AthkarItem {\n  id: string;\n  category: AthkarCategory;\n  text: string;\n  count: number;\n  counterMode?: "reading" | "repetition";\n  reference: string;\n}\n\n`;
 
 const categoriesObj = {};
 const athkarArray = [];
@@ -33,21 +34,15 @@ for (const [title, details] of Object.entries(data)) {
 
   if (details.text && Array.isArray(details.text)) {
     details.text.forEach((text, i) => {
-      // Find numbers inside the text to extract the count
-      let count = 1;
-      if (text.includes("ثلاث مرات") || text.includes("ثلاثاً") || text.includes("ثلاثا")) count = 3;
-      if (text.includes("عشر مرات")) count = 10;
-      if (text.includes("مائة مرة") || text.includes("مئة مرة")) count = 100;
-      if (text.includes("سبع مرات")) count = 7;
-      if (text.includes("أربع مرات")) count = 4;
-      
+      const counter = dhikrCounter(text);
+
       const reference = details.footnote && details.footnote[i] ? details.footnote[i] : "";
 
       athkarArray.push({
         id: `${catId}_${i + 1}`,
         category: catId,
         text: text.trim(),
-        count: count,
+        ...counter,
         reference: reference.trim().replace(/\n/g, " ")
       });
     });

@@ -42,7 +42,7 @@ const API_BASE = "https://api.quran.com/api/v4";
 // Fetches the list of all 114 Surahs
 export async function getChapters(): Promise<Chapter[]> {
   try {
-    const res = await fetch(`${API_BASE}/chapters?language=ar`);
+    const res = await fetch(`${API_BASE}/chapters?language=ar`, { signal: AbortSignal.timeout(15000) });
     if (!res.ok) throw new Error("Failed to fetch chapters");
     const data = await res.json();
     return data.chapters;
@@ -63,7 +63,7 @@ export async function getChapterVerses(chapterId: string | number): Promise<Vers
     while (page <= totalPages) {
       const res = await fetch(
         `${API_BASE}/verses/by_chapter/${chapterId}?fields=text_uthmani&per_page=50&page=${page}`
-      );
+      , { signal: AbortSignal.timeout(15000) });
       if (!res.ok) throw new Error("Failed to fetch verses");
       const data = await res.json();
       
@@ -86,7 +86,7 @@ export async function getChapterVerses(chapterId: string | number): Promise<Vers
  */
 export async function getTafsir(tafsirId: number, verseKey: string): Promise<string> {
   try {
-    const res = await fetch(`${API_BASE}/tafsirs/${tafsirId}/by_ayah/${verseKey}`);
+    const res = await fetch(`${API_BASE}/tafsirs/${tafsirId}/by_ayah/${verseKey}`, { signal: AbortSignal.timeout(15000) });
     if (!res.ok) throw new Error("Failed to fetch tafsir");
     const data: TafsirResponse = await res.json();
     // Strip HTML tags from the response text
@@ -107,7 +107,7 @@ export async function getTafsir(tafsirId: number, verseKey: string): Promise<str
  */
 export async function getChapterAudioUrl(reciterId: number, chapterId: string | number): Promise<string> {
   try {
-    const res = await fetch(`${API_BASE}/chapter_recitations/${reciterId}/${chapterId}`);
+    const res = await fetch(`${API_BASE}/chapter_recitations/${reciterId}/${chapterId}`, { signal: AbortSignal.timeout(15000) });
     if (!res.ok) throw new Error(`Failed to fetch audio: ${res.status}`);
     const data: ChapterRecitationResponse = await res.json();
     

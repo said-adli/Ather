@@ -1,13 +1,15 @@
 "use client";
 
+import { useHydrated } from "@/lib/hooks/useHydrated";
+
 import { useAppStore } from "@/lib/store/useAppStore";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { User, Type, RotateCcw, AlertTriangle, ChevronRight, Sparkles, HelpCircle } from "lucide-react";
 import Link from "next/link";
 
 export default function ProfilePage() {
-  const [mounted, setMounted] = useState(false);
+  const mounted = useHydrated();
   const [showResetConfirm, setShowResetConfirm] = useState(false);
   const [resetComplete, setResetComplete] = useState(false);
 
@@ -21,9 +23,6 @@ export default function ProfilePage() {
   const setQuranFontSize = useAppStore((state) => state.setQuranFontSize);
   const resetAllProgress = useAppStore((state) => state.resetAllProgress);
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   const handleReset = () => {
     resetAllProgress();

@@ -1,43 +1,22 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import { useHydrated } from "@/lib/hooks/useHydrated";
+import { useLocalValue } from "@/lib/hooks/useLocalValue";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Share, PlusSquare } from "lucide-react";
 
 export function IOSInstallPrompt() {
-  const [isIOS, setIsIOS] = useState(false);
-  const [isStandalone, setIsStandalone] = useState(false);
-  const [isDismissed, setIsDismissed] = useState(true); // Default to true to prevent flicker, hide until checked
-
-  useEffect(() => {
-    // Check if dismissed previously
-    const dismissed = localStorage.getItem("iosInstallDismissed");
-    if (dismissed === "true") {
-      return;
-    }
-
-    const userAgent = window.navigator.userAgent.toLowerCase();
-    const isIosDevice = /iphone|ipad|ipod/.test(userAgent);
-    // iOS Safari exposes standalone mode via navigator.standalone (non-standard but supported by Apple)
-    const isStandaloneMode = ('standalone' in window.navigator) && !!(window.navigator as any).standalone;
-
-    setIsIOS(isIosDevice);
-    setIsStandalone(isStandaloneMode);
-    
-    // Only show if it's an iOS device AND NOT in standalone mode
-    if (isIosDevice && !isStandaloneMode) {
-      setIsDismissed(false);
-    }
-  }, []);
-
+  const hydrated = useHydrated();
+  const [dismissed, writeDismissed] = useLocalValue('iosInstallDismissed');
+  const [hidden, setHidden] = useState(false);
+  const isIOS = hydrated && /iphone|ipad|ipod/i.test(navigator.userAgent);
+  const isStandalone = hydrated && 'standalone' in navigator && navigator.standalone === true;
   const handleDismiss = () => {
-    setIsDismissed(true);
-    localStorage.setItem("iosInstallDismissed", "true");
+    setHidden(true);
+    try { writeDismissed('true'); } catch { /* Keep session dismissal. */ }
   };
-
-  if (isDismissed || !isIOS || isStandalone) {
-    return null;
-  }
+  if (!isIOS || isStandalone || dismissed === 'true' || hidden) return null;
 
   return (
     <AnimatePresence>
@@ -59,7 +38,7 @@ export function IOSInstallPrompt() {
           <div className="flex flex-col items-center text-center gap-3 mt-1">
             <h3 className="text-slate-800 font-bold text-sm">أضف التطبيق للشاشة الرئيسية</h3>
             <p className="text-xs text-slate-500 leading-relaxed max-w-[250px] mb-2 font-medium">
-              لتجربة أسرع وبدون إنترنت، أضف أثر إلى هاتفك!
+              أضف أثر إلى هاتفك للوصول إليه بسهولة. بعض المحتوى يحتاج إلى اتصال بالإنترنت.
             </p>
             
             <div className="flex items-center gap-2 bg-slate-50 px-4 py-2.5 rounded-2xl w-full text-xs font-bold text-slate-600 justify-center">

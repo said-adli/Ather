@@ -1,8 +1,10 @@
 "use client";
 
-import { useAppStore, RECITERS } from "@/lib/store/useAppStore";
+import { useHydrated } from "@/lib/hooks/useHydrated";
+
+import { useAppStore } from "@/lib/store/useAppStore";
 import { Verse, getTafsir } from "@/lib/api/quran";
-import { useEffect, useState, useCallback } from "react";
+import { useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { BookOpen, Check, ChevronDown } from "lucide-react";
 
@@ -12,8 +14,8 @@ interface QuranVerseListProps {
   chapterId: string;
 }
 
-export function QuranVerseList({ verses, bismillahPre, chapterId }: QuranVerseListProps) {
-  const [mounted, setMounted] = useState(false);
+export function QuranVerseList({ verses, bismillahPre }: QuranVerseListProps) {
+  const mounted = useHydrated();
   const [markedRead, setMarkedRead] = useState(false);
   const [expandedVerse, setExpandedVerse] = useState<string | null>(null);
   const [tafsirCache, setTafsirCache] = useState<Record<string, string>>({});
@@ -23,9 +25,6 @@ export function QuranVerseList({ verses, bismillahPre, chapterId }: QuranVerseLi
   const selectedTafsirId = useAppStore((state) => state.selectedTafsirId);
   const addReadAyahs = useAppStore((state) => state.addReadAyahs);
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   // Default to 24px if not mounted to prevent layout shift
   const fontSize = mounted ? quranFontSize : 24;

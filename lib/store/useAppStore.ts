@@ -61,7 +61,7 @@ export const TAFSIR_OPTIONS: TafsirOption[] = [
   { id: 90,  nameAr: "تفسير القرطبي",                nameEn: "Al-Qurtubi",                language: "ar" },
   { id: 93,  nameAr: "التفسير الوسيط (طنطاوي)",       nameEn: "Al-Wasit (Tantawi)",        language: "ar" },
   { id: 94,  nameAr: "تفسير البغوي",                 nameEn: "Tafsir Al-Baghawi",         language: "ar" },
-  { id: 157, nameAr: "في ظلال القرآن",               nameEn: "Fi Zilal al-Quran",         language: "ar" },
+  { id: 157, nameAr: "في ظلال القرآن (أردي)",               nameEn: "Fi Zilal al-Quran",         language: "ur" },
   { id: 169, nameAr: "ابن كثير (مختصر إنجليزي)",      nameEn: "Ibn Kathir (Abridged EN)",  language: "en" },
   { id: 168, nameAr: "معارف القرآن (إنجليزي)",        nameEn: "Ma'arif al-Qur'an (EN)",    language: "en" },
 ];

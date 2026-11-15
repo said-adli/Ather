@@ -9,16 +9,17 @@ interface AudioPlayerProps {
   surahName: string;
   reciterName: string;
   isLoading?: boolean;
+  onRetry?: () => void;
 }
 
-export function AudioPlayer({ audioUrl, surahName, reciterName, isLoading: urlLoading }: AudioPlayerProps) {
+export function AudioPlayer({ audioUrl, surahName, reciterName, isLoading: urlLoading, onRetry }: AudioPlayerProps) {
   const { scrollY } = useScroll();
   const [hidden, setHidden] = useState(false);
   
   const [isPlaying, setIsPlaying] = useState(false);
   const [progress, setProgress] = useState(0);
   const [audioError, setAudioError] = useState(false);
-  const [audioReady, setAudioReady] = useState(false);
+
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   // Gently hide the player on downward scroll, reveal on upward scroll
@@ -52,7 +53,6 @@ export function AudioPlayer({ audioUrl, surahName, reciterName, isLoading: urlLo
     };
 
     const handleCanPlay = () => {
-      setAudioReady(true);
       setAudioError(false);
     };
 
@@ -75,12 +75,18 @@ export function AudioPlayer({ audioUrl, surahName, reciterName, isLoading: urlLo
       setIsPlaying(false);
       setProgress(0);
       setAudioError(false);
-      setAudioReady(false);
     }
     if (audioUrl && audioRef.current) {
       audioRef.current.src = audioUrl;
       audioRef.current.load();
+    } else if (audioRef.current) {
+      audioRef.current.removeAttribute("src");
+      audioRef.current.load();
     }
+    const audio = audioRef.current;
+    return () => {
+      if (audio) { audio.pause(); audio.removeAttribute("src"); audio.load(); }
+    };
   }, [audioUrl]);
 
   const togglePlay = useCallback(() => {
@@ -145,12 +151,13 @@ export function AudioPlayer({ audioUrl, surahName, reciterName, isLoading: urlLo
     };
   }, [surahName, reciterName, isPlaying]);
 
-  const showLoading = urlLoading || (!audioReady && !audioError && audioUrl !== "");
+  const showLoading = Boolean(urlLoading);
+  const unavailable = !urlLoading && (!audioUrl || audioError);
   const isDisabled = !audioUrl || audioError;
 
   return (
     <>
-      <audio ref={audioRef} preload="none" />
+      <audio ref={audioRef} preload="none" onPlay={() => setIsPlaying(true)} onPause={() => setIsPlaying(false)} />
       
       <AnimatePresence>
         {!hidden && (
@@ -166,10 +173,10 @@ export function AudioPlayer({ audioUrl, surahName, reciterName, isLoading: urlLo
               <div className="flex flex-col ml-auto">
                 <span className="text-white font-bold text-sm">{surahName}</span>
                 <span className="text-slate-400 text-[10px] uppercase tracking-widest font-semibold flex items-center gap-1.5">
-                  {audioError ? (
+                  {unavailable ? (
                     <>
                       <AlertCircle size={10} className="text-red-400" />
-                      <span className="text-red-400">خطأ في التشغيل</span>
+                      <span className="text-red-400">تعذر تحميل الصوت</span>
                     </>
                   ) : (
                     <>
@@ -181,7 +188,9 @@ export function AudioPlayer({ audioUrl, surahName, reciterName, isLoading: urlLo
               </div>
 
               <div className="flex items-center gap-4">
+                {unavailable && <button onClick={() => { if (audioUrl && audioRef.current) { setAudioError(false); audioRef.current.load(); } else onRetry?.(); }} className="text-xs text-white underline">إعادة المحاولة</button>}
                 <button 
+                  aria-label="إعادة الصوت من البداية"
                   onClick={restartAudio}
                   className="text-slate-300 hover:text-white transition-colors disabled:opacity-30"
                   disabled={isDisabled}
@@ -190,9 +199,10 @@ export function AudioPlayer({ audioUrl, surahName, reciterName, isLoading: urlLo
                 </button>
                 
                 <button 
+                  aria-label={isPlaying ? "إيقاف الصوت مؤقتاً" : "تشغيل الصوت"}
                   onClick={togglePlay}
                   className="w-12 h-12 flex items-center justify-center bg-white text-slate-900 rounded-full hover:scale-105 active:scale-95 transition-transform disabled:opacity-50 disabled:hover:scale-100"
-                  disabled={isDisabled && !showLoading}
+                  disabled={isDisabled || showLoading}
                 >
                   {showLoading ? (
                     <Loader2 size={20} className="animate-spin text-slate-500" />

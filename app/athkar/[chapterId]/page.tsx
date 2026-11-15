@@ -1,5 +1,7 @@
 "use client";
 
+import { useHydrated } from "@/lib/hooks/useHydrated";
+
 import { useState, useEffect, useCallback, use } from "react";
 import { ATHKAR, ATHKAR_CATEGORIES } from "@/lib/data/athkar";
 import { useAppStore } from "@/lib/store/useAppStore";
@@ -10,9 +12,9 @@ import { notFound } from "next/navigation";
 
 export default function ChapterPage({ params }: { params: Promise<{ chapterId: string }> }) {
   const { chapterId } = use(params);
-  const [mounted, setMounted] = useState(false);
+  const mounted = useHydrated();
   const [counters, setCounters] = useState<Record<string, number>>({});
-  const [completedIds, setCompletedIds] = useState<Set<string>>(new Set());
+  const completedIds = new Set(Object.keys(counters).filter(id => counters[id] === 0));
   
   const markHabitComplete = useAppStore((state) => state.markHabitComplete);
   const categoryMeta = ATHKAR_CATEGORIES[chapterId];
@@ -22,48 +24,20 @@ export default function ChapterPage({ params }: { params: Promise<{ chapterId: s
     if (!categoryMeta) {
       notFound();
     }
-    setMounted(true);
   }, [categoryMeta]);
 
-  // Initialize counters when component loads
-  useEffect(() => {
-    if (categoryAthkar.length === 0) return;
-    const initial: Record<string, number> = {};
-    categoryAthkar.forEach((d) => {
-      // Preserve already-completed state
-      if (!completedIds.has(d.id)) {
-        initial[d.id] = d.count;
-      } else {
-        initial[d.id] = 0;
-      }
-    });
-    setCounters(initial);
-  }, [completedIds, categoryAthkar.length]);
-
   const handleTap = useCallback((id: string) => {
-    setCounters((prev) => {
-      const current = prev[id];
-      if (current === undefined || current <= 0) return prev;
-
-      const newVal = current - 1;
-      if (newVal === 0) {
-        setCompletedIds((prevSet) => new Set(prevSet).add(id));
-      }
-      return { ...prev, [id]: newVal };
+    const dhikr = ATHKAR.find(item => item.id === id);
+    if (!dhikr) return;
+    setCounters(prev => {
+      const current = prev[id] ?? dhikr.count;
+      return current > 0 ? { ...prev, [id]: current - 1 } : prev;
     });
   }, []);
 
-  const resetCategory = useCallback(() => {
-    const newCompleted = new Set(completedIds);
-    categoryAthkar.forEach((d) => newCompleted.delete(d.id));
-    setCompletedIds(newCompleted);
-
-    const initial: Record<string, number> = {};
-    categoryAthkar.forEach((d) => {
-      initial[d.id] = d.count;
-    });
-    setCounters((prev) => ({ ...prev, ...initial }));
-  }, [completedIds, categoryAthkar]);
+  const resetCategory = () => {
+    setCounters(prev => ({ ...prev, ...Object.fromEntries(categoryAthkar.map(d => [d.id, d.count])) }));
+  };
 
   // Check if all athkar in current category are completed
   const allCompleted = mounted && categoryAthkar.length > 0 && categoryAthkar.every((d) => completedIds.has(d.id));
@@ -74,12 +48,13 @@ export default function ChapterPage({ params }: { params: Promise<{ chapterId: s
     if (!mounted || !allCompleted) return;
     
     // Attempt auto-completion for common habits matching Dorar/Hisn categories
-    if (categoryMeta?.title.includes("الصباح")) {
+    if (categoryMeta?.title === "أذكار الصباح والمساء") {
+      markHabitComplete(new Date().getHours() < 12 ? "morning_azkar" : "evening_azkar");
+    } else if (categoryMeta?.title === "أذكار الصباح") {
       markHabitComplete("morning_azkar");
     } else if (categoryMeta?.title.includes("المساء")) {
       markHabitComplete("evening_azkar");
-    } else if (categoryMeta?.title.includes("النوم")) {
-      markHabitComplete("sleep_azkar");
+
     }
   }, [allCompleted, categoryMeta, markHabitComplete, mounted]);
 
@@ -175,12 +150,13 @@ export default function ChapterPage({ params }: { params: Promise<{ chapterId: s
                   {dhikr.text}
                 </p>
 
+                {dhikr.counterMode === "reading" && <p className="text-xs text-amber-800 mb-4 leading-7">هذا النص يتضمن أعداداً أو أوقاتاً مختلفة؛ اتبع التفصيل الوارد فيه، ثم اضغط لتأكيد قراءته.</p>}
                 {/* Footer: reference + counter */}
                 <div className="flex items-end justify-between border-t border-slate-50 pt-4" dir="rtl">
                   <div className="flex flex-col gap-1 text-right max-w-[70%]">
-                    <span className="text-[10px] text-slate-400 font-bold tracking-widest uppercase">المصدر:</span>
+                    <span className="text-[10px] text-slate-400 font-bold tracking-widest uppercase">المرجع: حصن المسلم</span>
                     <span className="text-xs text-slate-500 font-medium leading-relaxed">
-                      {dhikr.reference || "حصن المسلم"}
+                      {dhikr.reference && `ملاحظات وتخريج النسخة: ${dhikr.reference}`}
                     </span>
                   </div>
 
@@ -189,7 +165,7 @@ export default function ChapterPage({ params }: { params: Promise<{ chapterId: s
                       <div className="w-10 h-10 rounded-xl bg-emerald-100 flex items-center justify-center">
                         <Check size={20} strokeWidth={3.5} />
                       </div>
-                      <span className="text-[10px] font-black">أُنجِزَ</span>
+                      <span className="text-[10px] font-black">{dhikr.counterMode === "reading" ? "قُرِئَ" : "أُنجِزَ"}</span>
                     </div>
                   ) : (
                     <div className="flex flex-col items-center gap-1">
@@ -201,7 +177,7 @@ export default function ChapterPage({ params }: { params: Promise<{ chapterId: s
                       >
                         {remaining}
                       </motion.div>
-                      <span className="text-[10px] text-slate-400 font-bold tracking-wider">التكرار</span>
+                      <span className="text-[10px] text-slate-400 font-bold tracking-wider">{dhikr.counterMode === "reading" ? "قراءة النص" : "التكرار"}</span>
                     </div>
                   )}
                 </div>

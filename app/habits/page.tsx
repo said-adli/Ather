@@ -1,20 +1,18 @@
 "use client";
 
+import { useHydrated } from "@/lib/hooks/useHydrated";
+
 import { HABITS, HabitCategory } from "@/lib/data/habits";
 import { useAppStore } from "@/lib/store/useAppStore";
 import { motion } from "framer-motion";
 import { Check } from "lucide-react";
-import { useEffect, useState } from "react";
 
 export default function HabitsPage() {
-  const [mounted, setMounted] = useState(false);
+  const mounted = useHydrated();
   const toggleHabit = useAppStore((state) => state.toggleHabit);
   const getDailyProgress = useAppStore((state) => state.getDailyProgress);
   const getCompletedHabitIds = useAppStore((state) => state.getCompletedHabitIds);
   
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   // Read completed habit IDs for today from the date-scoped store
   const completedHabitIds = mounted ? getCompletedHabitIds() : [];

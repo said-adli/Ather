@@ -1,10 +1,12 @@
 "use client";
 
+import { useHydrated } from "@/lib/hooks/useHydrated";
+
 import { useAppStore, RECITERS, TAFSIR_OPTIONS } from "@/lib/store/useAppStore";
 import { getChapterAudioUrl, type Verse } from "@/lib/api/quran";
 import { AudioPlayer } from "@/components/features/AudioPlayer";
 import { QuranVerseList } from "@/components/features/QuranVerseList";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Settings, Mic, BookOpen, ChevronDown } from "lucide-react";
 
@@ -21,41 +23,31 @@ export function QuranReaderClient({
   bismillahPre,
   chapterId,
   chapterNameArabic,
-  chapterNameSimple,
 }: QuranReaderClientProps) {
-  const [mounted, setMounted] = useState(false);
-  const [audioUrl, setAudioUrl] = useState("");
-  const [audioLoading, setAudioLoading] = useState(false);
+  const mounted = useHydrated();
+  const [audio, setAudio] = useState({ key: "", url: "" });
   const [settingsOpen, setSettingsOpen] = useState(false);
+  const [audioAttempt, setAudioAttempt] = useState(0);
 
   const selectedReciterId = useAppStore((state) => state.selectedReciterId);
   const selectedTafsirId = useAppStore((state) => state.selectedTafsirId);
   const setSelectedReciterId = useAppStore((state) => state.setSelectedReciterId);
   const setSelectedTafsirId = useAppStore((state) => state.setSelectedTafsirId);
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
-  // Fetch audio URL when reciter or chapter changes
-  const fetchAudio = useCallback(async () => {
-    setAudioLoading(true);
-    setAudioUrl("");
-    try {
-      const url = await getChapterAudioUrl(selectedReciterId, chapterId);
-      setAudioUrl(url);
-    } catch {
-      setAudioUrl("");
-    } finally {
-      setAudioLoading(false);
-    }
-  }, [selectedReciterId, chapterId]);
+  const requestKey = `${selectedReciterId}/${chapterId}/${audioAttempt}`;
+  const audioUrl = audio.key === requestKey ? audio.url : "";
+  const audioLoading = mounted && audio.key !== requestKey;
 
   useEffect(() => {
-    if (mounted) {
-      fetchAudio();
-    }
-  }, [mounted, fetchAudio]);
+    if (!mounted) return;
+    let cancelled = false;
+    getChapterAudioUrl(selectedReciterId, chapterId).then(url => {
+      if (!cancelled) setAudio({ key: requestKey, url });
+
+    });
+    return () => { cancelled = true; };
+  }, [mounted, selectedReciterId, chapterId, requestKey]);
 
   const reciter = RECITERS.find((r) => r.id === selectedReciterId) ?? RECITERS[0];
 
@@ -145,7 +137,9 @@ export function QuranReaderClient({
       {/* Interactive Floating Audio Player */}
       {mounted && (
         <AudioPlayer
+          key={requestKey}
           audioUrl={audioUrl}
+          onRetry={() => setAudioAttempt(value => value + 1)}
           surahName={chapterNameArabic}
           reciterName={reciter.nameAr}
           isLoading={audioLoading}

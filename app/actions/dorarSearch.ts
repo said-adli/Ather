@@ -13,8 +13,11 @@ export interface DorarHadith {
 }
 
 export async function searchDorar(query: string): Promise<DorarHadith[]> {
+  const term = query.trim();
+  if (term.length < 2 || term.length > 200) throw new Error("INVALID_QUERY");
   try {
-    const response = await fetch(`https://dorar.net/dorar/api?skey=${encodeURIComponent(query)}`, {
+    const response = await fetch(`https://dorar.net/dorar/api?skey=${encodeURIComponent(term)}`, {
+      signal: AbortSignal.timeout(15000),
       headers: {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)",
       },
@@ -26,7 +29,8 @@ export async function searchDorar(query: string): Promise<DorarHadith[]> {
     }
 
     const data = await response.json();
-    const html = data.ahadith || "";
+    const html = typeof data.ahadith === "string" ? data.ahadith : data.ahadith?.result;
+    if (typeof html !== "string") throw new Error("Invalid Dorar response");
 
     const $ = cheerio.load(html);
     const results: DorarHadith[] = [];
@@ -73,6 +77,6 @@ export async function searchDorar(query: string): Promise<DorarHadith[]> {
     return results;
   } catch (error) {
     console.error("Dorar Search Error:", error);
-    return [];
+    throw new Error("DORAR_UNAVAILABLE");
   }
 }

@@ -10,13 +10,11 @@ export const viewport: Viewport = {
   themeColor: "#ffffff",
   width: "device-width",
   initialScale: 1,
-  maximumScale: 1,
-  userScalable: false,
 };
 
 export const metadata: Metadata = {
   title: "أثر — تطبيق إسلامي",
-  description: "تطبيق إسلامي شامل: القرآن الكريم، الأذكار، تتبع العادات، وختمة القرآن",
+  description: "تطبيق إسلامي شامل: القرآن الكريم، الأذكار، تتبع العادات، وختمة القرآن، والكتب والروايات",
   manifest: "/manifest.json",
   appleWebApp: {
     capable: true,
@@ -36,7 +34,7 @@ export default function RootLayout({
         <div className="flex flex-col h-full mx-auto max-w-md bg-white shadow-2xl overflow-hidden relative">
           
           {/* Main Content Area */}
-          <main className="flex-1 overflow-y-auto pb-24 scroll-smooth">
+          <main id="app-scroll" className="flex-1 overflow-y-auto pb-24 scroll-smooth">
             {children}
           </main>
 

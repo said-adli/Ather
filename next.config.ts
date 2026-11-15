@@ -14,7 +14,9 @@ const withPWA = withPWAInit({
 });
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  outputFileTracingIncludes: {
+    "/library/books/**": ["./lib/data/reading/*.json"],
+  },
 };
 
 export default withPWA(nextConfig);

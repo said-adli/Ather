@@ -1,20 +1,19 @@
 "use client";
 
+import { useHydrated } from "@/lib/hooks/useHydrated";
+
 import { useAppStore } from "@/lib/store/useAppStore";
-import { useMemo, useEffect, useState } from "react";
+import { useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 export function AtharTree() {
   // Use state to avoid hydration mismatch
-  const [mounted, setMounted] = useState(false);
+  const mounted = useHydrated();
   const khatmaProgress = useAppStore((state) => state.khatmaProgress);
   // Re-evaluate daily progress when habits change
   useAppStore((state) => state.completedHabits);
   const getDailyProgress = useAppStore((state) => state.getDailyProgress);
   
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   const progress = mounted ? getDailyProgress() : 0;
   

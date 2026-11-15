@@ -11,11 +11,14 @@ export default function HadithSearchPage() {
   const [results, setResults] = useState<DorarHadith[]>([]);
   const [loading, setLoading] = useState(false);
   const [hasSearched, setHasSearched] = useState(false);
+  const [searchError, setSearchError] = useState(false);
 
   const handleSearch = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!query.trim()) return;
 
+    setSearchError(false);
+    setResults([]);
     setLoading(true);
     setHasSearched(true);
     
@@ -24,17 +27,13 @@ export default function HadithSearchPage() {
       setResults(data);
     } catch (error) {
       console.error(error);
+      setSearchError(true);
     } finally {
       setLoading(false);
     }
   };
 
-  const getGradeColor = (grade: string) => {
-    if (grade.includes("صحيح")) return "bg-emerald-50 text-emerald-700 border-emerald-200";
-    if (grade.includes("حسن")) return "bg-blue-50 text-blue-700 border-blue-200";
-    if (grade.includes("ضعيف") || grade.includes("موضوع") || grade.includes("باطل")) return "bg-red-50 text-red-700 border-red-200";
-    return "bg-slate-50 text-slate-700 border-slate-200";
-  };
+  const getGradeColor = () => "bg-slate-50 text-slate-700 border-slate-200";
 
   return (
     <div className="flex flex-col min-h-screen bg-[#FDFBF7]">
@@ -54,6 +53,7 @@ export default function HadithSearchPage() {
         <form onSubmit={handleSearch} className="relative">
           <button 
             type="submit"
+            aria-label="ابحث"
             className="absolute inset-y-0 right-0 pr-3 flex items-center transition-colors hover:text-emerald-600 disabled:opacity-50"
             disabled={loading}
           >
@@ -61,6 +61,10 @@ export default function HadithSearchPage() {
           </button>
           <input
             type="text"
+            aria-label="كلمات البحث في الحديث"
+            minLength={2}
+            maxLength={200}
+            disabled={loading}
             className="block w-full pr-10 pl-3 py-3.5 border border-slate-200 rounded-2xl leading-5 bg-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500 transition-all font-bold text-sm shadow-inner"
             placeholder="ابحث بكلمات من الحديث..."
             value={query}
@@ -71,6 +75,7 @@ export default function HadithSearchPage() {
       </header>
 
       <main className="flex-1 px-4 py-6 pb-24 max-w-3xl mx-auto w-full">
+        {searchError && <p role="alert" className="p-4 mb-4 bg-amber-50 rounded-xl text-amber-900 text-sm">تعذر الوصول إلى مصدر الأحاديث. أعد المحاولة لاحقاً.</p>}
         {!hasSearched ? (
           <div className="flex flex-col items-center justify-center opacity-40 mt-20">
             <Search size={48} className="mb-4" />
@@ -92,7 +97,7 @@ export default function HadithSearchPage() {
 
                   {/* Grading Tag */}
                   <div className="flex justify-between items-start mb-5" dir="rtl">
-                    <span className={`text-[11px] font-bold px-3 py-1.5 rounded-lg border ${getGradeColor(hadith.grade)} shadow-sm`}>
+                    <span className={`text-[11px] font-bold px-3 py-1.5 rounded-lg border ${getGradeColor()} shadow-sm`}>
                       {hadith.grade}
                     </span>
                   </div>
@@ -130,7 +135,7 @@ export default function HadithSearchPage() {
               ))}
             </AnimatePresence>
             
-            {results.length === 0 && !loading && (
+            {results.length === 0 && !loading && !searchError && (
               <div className="text-center py-10">
                 <span className="text-3xl mb-3 block">🧐</span>
                 <p className="text-slate-500 font-bold">لم يتم العثور على أحاديث تطابق بحثك.</p>

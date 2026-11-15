@@ -1,10 +1,11 @@
 "use client";
 
+import { useHydrated } from "@/lib/hooks/useHydrated";
+
 import { AtharTree } from "@/components/features/AtharTree";
 import { TranquilityButton } from "@/components/ui/TranquilityButton";
 import Link from "next/link";
 import { useAppStore } from "@/lib/store/useAppStore";
-import { useState, useEffect } from "react";
 
 export default function Home() {
   const getGreeting = () => {
@@ -16,18 +17,15 @@ export default function Home() {
 
   const khatmaProgress = useAppStore((state) => state.khatmaProgress);
   const userName = useAppStore((state) => state.userName);
-  const [mounted, setMounted] = useState(false);
+  const mounted = useHydrated();
   
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   return (
     <div className="flex flex-col min-h-full px-6 pt-10 pb-8 safe-area-inset-top">
       {/* Header section */}
       <header className="mb-8">
         <h1 className="text-3xl font-bold text-slate-800 tracking-tight">
-          {getGreeting()}{mounted && userName ? ` ${userName}` : ""},
+          {mounted ? getGreeting() : "أهلاً بك"}{mounted && userName ? ` ${userName}` : ""},
         </h1>
         <p className="text-slate-500 font-medium mt-1">
           أهلاً بك في أثر

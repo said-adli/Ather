@@ -1,8 +1,6 @@
-import { getChapters, getChapterVerses, getChapterAudioUrl } from "@/lib/api/quran";
+import { getChapters, getChapterVerses } from "@/lib/api/quran";
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
-import { AudioPlayer } from "@/components/features/AudioPlayer";
-import { QuranVerseList } from "@/components/features/QuranVerseList";
 import { QuranReaderClient } from "./QuranReaderClient";
 
 // Allow Next.js 15 to await the promised params

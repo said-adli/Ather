@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { normalizeArabic } from "@/lib/arabic";
 import { ATHKAR_CATEGORIES } from "@/lib/data/athkar";
 import Link from "next/link";
 import { Search, ChevronLeft } from "lucide-react";
@@ -11,7 +12,7 @@ export default function AthkarDirectoryPage() {
   
   const categoriesList = Object.values(ATHKAR_CATEGORIES);
   const filteredCategories = categoriesList.filter(c => 
-    c.title.includes(searchQuery)
+    normalizeArabic(c.title).includes(normalizeArabic(searchQuery))
   );
 
   return (
