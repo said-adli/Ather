@@ -160,6 +160,26 @@
     "readerHref": "/library/pdf/hindawi-17170975"
   },
   {
+    "id": "hindawi-18403864",
+    "title": "رسالة في معرفة النفس الناطقة وأحوالها",
+    "author": "ابن سينا",
+    "category": "فلسفة",
+    "description": "نسخة الناشر داخل التطبيق؛ بيانات النص وحقوقه في صفحات الكتاب.",
+    "pageCount": 18,
+    "readUrl": "https://downloads.hindawi.org/books/18403864.pdf",
+    "readerHref": "/library/pdf/hindawi-18403864"
+  },
+  {
+    "id": "hindawi-19204286",
+    "title": "تاريخ الفلسفة اليونانية",
+    "author": "يوسف كرم",
+    "category": "فلسفة",
+    "description": "نسخة الناشر داخل التطبيق؛ بيانات النص وحقوقه في صفحات الكتاب.",
+    "pageCount": 302,
+    "readUrl": "https://downloads.hindawi.org/books/19204286.pdf",
+    "readerHref": "/library/pdf/hindawi-19204286"
+  },
+  {
     "id": "hindawi-19302826",
     "title": "تجربة جامعة كاينبلاتس الكبرى",
     "author": "آرثر كونان دويل",
@@ -260,6 +280,16 @@
     "readerHref": "/library/pdf/hindawi-27916469"
   },
   {
+    "id": "hindawi-28069053",
+    "title": "مباحث في فلسفة الأخلاق",
+    "author": "محمد يوسف موسى",
+    "category": "فلسفة",
+    "description": "نسخة الناشر داخل التطبيق؛ بيانات النص وحقوقه في صفحات الكتاب.",
+    "pageCount": 120,
+    "readUrl": "https://downloads.hindawi.org/books/28069053.pdf",
+    "readerHref": "/library/pdf/hindawi-28069053"
+  },
+  {
     "id": "hindawi-28269058",
     "title": "مغامرة الرجال الراقصين",
     "author": "آرثر كونان دويل",
@@ -308,6 +338,16 @@
     "pageCount": 16,
     "readUrl": "https://downloads.hindawi.org/books/30272952.pdf",
     "readerHref": "/library/pdf/hindawi-30272952"
+  },
+  {
+    "id": "hindawi-30953836",
+    "title": "عامل التحويلة",
+    "author": "تشارلز ديكنز",
+    "category": "قصص",
+    "description": "نسخة الناشر داخل التطبيق؛ بيانات النص وحقوقه في صفحات الكتاب.",
+    "pageCount": 22,
+    "readUrl": "https://downloads.hindawi.org/books/30953836.pdf",
+    "readerHref": "/library/pdf/hindawi-30953836"
   },
   {
     "id": "hindawi-31641375",
@@ -390,6 +430,16 @@
     "readerHref": "/library/pdf/hindawi-40942914"
   },
   {
+    "id": "hindawi-40948193",
+    "title": "تاريخ فلاسفة الإسلام: دراسة شاملة عن حياتهم وأعمالهم ونقد تحليلي عن آرائهم الفلسفية",
+    "author": "محمد لطفي جمعة",
+    "category": "فلسفة",
+    "description": "نسخة الناشر داخل التطبيق؛ بيانات النص وحقوقه في صفحات الكتاب.",
+    "pageCount": 320,
+    "readUrl": "https://downloads.hindawi.org/books/40948193.pdf",
+    "readerHref": "/library/pdf/hindawi-40948193"
+  },
+  {
     "id": "hindawi-41728357",
     "title": "أبو مسلم الخراساني",
     "author": "جُرجي زيدان",
@@ -450,6 +500,16 @@
     "readerHref": "/library/pdf/hindawi-48246418"
   },
   {
+    "id": "hindawi-48375831",
+    "title": "الهوامل والشوامل",
+    "author": "أبو حيان التوحيدي",
+    "category": "فلسفة",
+    "description": "نسخة الناشر داخل التطبيق؛ بيانات النص وحقوقه في صفحات الكتاب.",
+    "pageCount": 374,
+    "readUrl": "https://downloads.hindawi.org/books/48375831.pdf",
+    "readerHref": "/library/pdf/hindawi-48375831"
+  },
+  {
     "id": "hindawi-48505939",
     "title": "الدكتور جيكل والسيد هايد",
     "author": "روبرت لويس ستيفنسون",
@@ -478,6 +538,36 @@
     "pageCount": 24,
     "readUrl": "https://downloads.hindawi.org/books/49095350.pdf",
     "readerHref": "/library/pdf/hindawi-49095350"
+  },
+  {
+    "id": "hindawi-49725914",
+    "title": "منطق المشرقيين والقصيدة المزدوجة في المنطق",
+    "author": "ابن سينا",
+    "category": "فلسفة",
+    "description": "نسخة الناشر داخل التطبيق؛ بيانات النص وحقوقه في صفحات الكتاب.",
+    "pageCount": 116,
+    "readUrl": "https://downloads.hindawi.org/books/49725914.pdf",
+    "readerHref": "/library/pdf/hindawi-49725914"
+  },
+  {
+    "id": "hindawi-53714184",
+    "title": "رسالة في ماهية العشق",
+    "author": "ابن سينا",
+    "category": "فلسفة",
+    "description": "نسخة الناشر داخل التطبيق؛ بيانات النص وحقوقه في صفحات الكتاب.",
+    "pageCount": 28,
+    "readUrl": "https://downloads.hindawi.org/books/53714184.pdf",
+    "readerHref": "/library/pdf/hindawi-53714184"
+  },
+  {
+    "id": "hindawi-57379637",
+    "title": "تاريخ الفلسفة الحديثة",
+    "author": "يوسف كرم",
+    "category": "فلسفة",
+    "description": "نسخة الناشر داخل التطبيق؛ بيانات النص وحقوقه في صفحات الكتاب.",
+    "pageCount": 498,
+    "readUrl": "https://downloads.hindawi.org/books/57379637.pdf",
+    "readerHref": "/library/pdf/hindawi-57379637"
   },
   {
     "id": "hindawi-59429042",
@@ -560,6 +650,16 @@
     "readerHref": "/library/pdf/hindawi-63130482"
   },
   {
+    "id": "hindawi-63814928",
+    "title": "العقل والوجود",
+    "author": "يوسف كرم",
+    "category": "فلسفة",
+    "description": "نسخة الناشر داخل التطبيق؛ بيانات النص وحقوقه في صفحات الكتاب.",
+    "pageCount": 164,
+    "readUrl": "https://downloads.hindawi.org/books/63814928.pdf",
+    "readerHref": "/library/pdf/hindawi-63814928"
+  },
+  {
     "id": "hindawi-64860839",
     "title": "مغامرة جوهرة مازارين",
     "author": "آرثر كونان دويل",
@@ -590,6 +690,16 @@
     "readerHref": "/library/pdf/hindawi-68636204"
   },
   {
+    "id": "hindawi-69159020",
+    "title": "قاموس فولتير الفلسفي",
+    "author": "فولتير",
+    "category": "فلسفة",
+    "description": "نسخة الناشر داخل التطبيق؛ بيانات النص وحقوقه في صفحات الكتاب.",
+    "pageCount": 326,
+    "readUrl": "https://downloads.hindawi.org/books/69159020.pdf",
+    "readerHref": "/library/pdf/hindawi-69159020"
+  },
+  {
     "id": "hindawi-69192647",
     "title": "مغامرة تشارلز أوجستس ميلفيرتون",
     "author": "آرثر كونان دويل",
@@ -598,6 +708,16 @@
     "pageCount": 24,
     "readUrl": "https://downloads.hindawi.org/books/69192647.pdf",
     "readerHref": "/library/pdf/hindawi-69192647"
+  },
+  {
+    "id": "hindawi-69316182",
+    "title": "فلسفة الوجود",
+    "author": "نقولا حداد",
+    "category": "فلسفة",
+    "description": "نسخة الناشر داخل التطبيق؛ بيانات النص وحقوقه في صفحات الكتاب.",
+    "pageCount": 126,
+    "readUrl": "https://downloads.hindawi.org/books/69316182.pdf",
+    "readerHref": "/library/pdf/hindawi-69316182"
   },
   {
     "id": "hindawi-69404051",
@@ -620,6 +740,16 @@
     "readerHref": "/library/pdf/hindawi-69729647"
   },
   {
+    "id": "hindawi-70640725",
+    "title": "الناحية الاجتماعية والسياسية في فلسفة ابن سينا",
+    "author": "محمد يوسف موسى",
+    "category": "فلسفة",
+    "description": "نسخة الناشر داخل التطبيق؛ بيانات النص وحقوقه في صفحات الكتاب.",
+    "pageCount": 48,
+    "readUrl": "https://downloads.hindawi.org/books/70640725.pdf",
+    "readerHref": "/library/pdf/hindawi-70640725"
+  },
+  {
     "id": "hindawi-71757280",
     "title": "قضية جسر ثُور",
     "author": "آرثر كونان دويل",
@@ -640,16 +770,6 @@
     "readerHref": "/library/pdf/hindawi-71858151"
   },
   {
-    "id": "hindawi-71903071",
-    "title": "مذكرات بكوِك",
-    "author": "تشارلز ديكنز",
-    "category": "روايات",
-    "description": "عمل من الأدب العالمي بترجمة عربية؛ قراءة النسخة الأصلية داخل أثر.",
-    "pageCount": 942,
-    "readUrl": "https://downloads.hindawi.org/books/71903071.pdf",
-    "readerHref": "/library/pdf/hindawi-71903071"
-  },
-  {
     "id": "hindawi-71964030",
     "title": "مغامرة مصاصة دماء ساسكس",
     "author": "آرثر كونان دويل",
@@ -658,6 +778,16 @@
     "pageCount": 24,
     "readUrl": "https://downloads.hindawi.org/books/71964030.pdf",
     "readerHref": "/library/pdf/hindawi-71964030"
+  },
+  {
+    "id": "hindawi-72603951",
+    "title": "بين الدين والفلسفة: في رأي ابن رشد وفلاسفة العصر الوسيط",
+    "author": "محمد يوسف موسى",
+    "category": "فلسفة",
+    "description": "نسخة الناشر داخل التطبيق؛ بيانات النص وحقوقه في صفحات الكتاب.",
+    "pageCount": 206,
+    "readUrl": "https://downloads.hindawi.org/books/72603951.pdf",
+    "readerHref": "/library/pdf/hindawi-72603951"
   },
   {
     "id": "hindawi-72639313",
@@ -718,6 +848,26 @@
     "pageCount": 122,
     "readUrl": "https://downloads.hindawi.org/books/73928048.pdf",
     "readerHref": "/library/pdf/hindawi-73928048"
+  },
+  {
+    "id": "hindawi-73939168",
+    "title": "الأمير السعيد وحكايات أخرى",
+    "author": "أوسكار وايلد",
+    "category": "قصص",
+    "description": "نسخة الناشر داخل التطبيق؛ بيانات النص وحقوقه في صفحات الكتاب.",
+    "pageCount": 50,
+    "readUrl": "https://downloads.hindawi.org/books/73939168.pdf",
+    "readerHref": "/library/pdf/hindawi-73939168"
+  },
+  {
+    "id": "hindawi-73941747",
+    "title": "ابن رشد",
+    "author": "عباس محمود العقاد",
+    "category": "فلسفة",
+    "description": "نسخة الناشر داخل التطبيق؛ بيانات النص وحقوقه في صفحات الكتاب.",
+    "pageCount": 102,
+    "readUrl": "https://downloads.hindawi.org/books/73941747.pdf",
+    "readerHref": "/library/pdf/hindawi-73941747"
   },
   {
     "id": "hindawi-74268029",
@@ -1100,6 +1250,16 @@
     "readerHref": "/library/pdf/hindawi-93692485"
   },
   {
+    "id": "hindawi-93861582",
+    "title": "الإمتاع والمؤانسة",
+    "author": "أبو حيان التوحيدي",
+    "category": "فلسفة",
+    "description": "نسخة الناشر داخل التطبيق؛ بيانات النص وحقوقه في صفحات الكتاب.",
+    "pageCount": 596,
+    "readUrl": "https://downloads.hindawi.org/books/93861582.pdf",
+    "readerHref": "/library/pdf/hindawi-93861582"
+  },
+  {
     "id": "hindawi-94073036",
     "title": "جزيرة الدكتور مورو",
     "author": "هربرت جورج ويلز",
@@ -1108,6 +1268,16 @@
     "pageCount": 156,
     "readUrl": "https://downloads.hindawi.org/books/94073036.pdf",
     "readerHref": "/library/pdf/hindawi-94073036"
+  },
+  {
+    "id": "hindawi-94080792",
+    "title": "المنطق السليم",
+    "author": "توماس بين",
+    "category": "فلسفة",
+    "description": "نسخة الناشر داخل التطبيق؛ بيانات النص وحقوقه في صفحات الكتاب.",
+    "pageCount": 64,
+    "readUrl": "https://downloads.hindawi.org/books/94080792.pdf",
+    "readerHref": "/library/pdf/hindawi-94080792"
   },
   {
     "id": "hindawi-94152969",
@@ -1160,6 +1330,16 @@
     "readerHref": "/library/pdf/hindawi-96940275"
   },
   {
+    "id": "hindawi-97046206",
+    "title": "ابن رشد الفيلسوف",
+    "author": "محمد يوسف موسى",
+    "category": "فلسفة",
+    "description": "نسخة الناشر داخل التطبيق؛ بيانات النص وحقوقه في صفحات الكتاب.",
+    "pageCount": 80,
+    "readUrl": "https://downloads.hindawi.org/books/97046206.pdf",
+    "readerHref": "/library/pdf/hindawi-97046206"
+  },
+  {
     "id": "hindawi-97050631",
     "title": "بذور البرتقال الخمس",
     "author": "آرثر كونان دويل",
@@ -1168,5 +1348,15 @@
     "pageCount": 26,
     "readUrl": "https://downloads.hindawi.org/books/97050631.pdf",
     "readerHref": "/library/pdf/hindawi-97050631"
+  },
+  {
+    "id": "hindawi-97152818",
+    "title": "آراء أهل المدينة الفاضلة ومضاداتها",
+    "author": "أبو نصر محمد الفارابي",
+    "category": "فلسفة",
+    "description": "نسخة الناشر داخل التطبيق؛ بيانات النص وحقوقه في صفحات الكتاب.",
+    "pageCount": 108,
+    "readUrl": "https://downloads.hindawi.org/books/97152818.pdf",
+    "readerHref": "/library/pdf/hindawi-97152818"
   }
 ]

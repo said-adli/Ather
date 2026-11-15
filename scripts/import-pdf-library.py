@@ -18,7 +18,7 @@ def normalized(text):
     return ''.join(c for c in unicodedata.normalize('NFKC', text) if not c.isspace() and not unicodedata.combining(c))
 
 
-def verify_license(text):
+def verify_license(text, text_rights):
     value = normalized(text)
     if 'المشاعالإبداعي' not in value or 'نسبالمصنف' not in value or not re.search(r'[٤4][٫.][٠0]|[٠0][٫.][٤4]', value):
         raise ValueError('No explicit supported Creative Commons 4.0 grant')
@@ -27,6 +27,14 @@ def verify_license(text):
         raise ValueError('Restricted edition is not in this catalogue')
     if 'للملكيةالعامة' not in value and 'بهذاالكتاب' not in value and 'بهذاالعمل' not in value:
         raise ValueError('Text redistribution rights are unclear')
+    if text_rights == 'licensed-translation':
+        if 'الترجمةالعربيةلنصهذاالكتابمرخصةبموجبرخصةالمشاعالإبداعي' not in value:
+            raise ValueError('Arabic translation grant is unclear')
+    elif text_rights == 'arabic-public-domain':
+        if 'ترجمة' in value or 'نصالعملالأصليخاضعةللملكيةالعامة' not in value:
+            raise ValueError('Arabic original text rights are unclear')
+    else:
+        raise ValueError('Text rights classification is required')
     return 'CC BY 4.0'
 
 
@@ -58,7 +66,7 @@ def import_book(book):
     for index, page in enumerate(reader.pages[:8]):
         text = page.extract_text() or ''
         if 'المشاعالإبداعي' in normalized(text):
-            verify_license(text)
+            verify_license(text, book.get('textRights'))
             rights = unicodedata.normalize('NFKC', text).strip()
             rights_page = index + 1
             break

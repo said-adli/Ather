@@ -48,6 +48,13 @@ for (const pdf of pdfs) {
   assert.equal(pdf.license, 'CC BY 4.0');
   assert.equal(pdf.licenseUrl, 'https://creativecommons.org/licenses/by/4.0/deed.ar');
   assert.ok(pdf.rightsStatement && pdf.verifiedAt && pdf.author && pdf.title);
+  const rights = pdf.rightsStatement.normalize('NFKC').replace(/[\s\u064B-\u065F\u0670]/g, '');
+  if (pdf.textRights === 'licensed-translation') {
+    assert.ok(rights.includes('الترجمةالعربيةلنصهذاالكتابمرخصةبموجبرخصةالمشاعالإبداعي'), `Unclear translation grant: ${pdf.id}`);
+  } else {
+    assert.equal(pdf.textRights, 'arabic-public-domain', `Unknown text rights: ${pdf.id}`);
+    assert.ok(!rights.includes('ترجمة') && rights.includes('نصالعملالأصليخاضعةللملكيةالعامة'), `Unclear original text rights: ${pdf.id}`);
+  }
   assert.ok(Number.isInteger(pdf.pageCount) && pdf.pageCount >= 5);
   assert.ok(Number.isInteger(pdf.byteLength) && pdf.byteLength > 1000 && pdf.byteLength < 40 * 1024 * 1024);
   assert.ok(pdf.rightsPage > 0 && pdf.rightsPage <= pdf.pageCount);

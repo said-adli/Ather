@@ -4,7 +4,7 @@ import Link from 'next/link';
 import type { PDFDocumentProxy, RenderTask } from 'pdfjs-dist';
 import { useLocalValue, parseLocalValue } from '@/lib/hooks/useLocalValue';
 
-type PdfMeta = { id: string; title: string; author: string; pageCount: number; byteLength: number; sha256: string; sourceUrl: string; license: string; licenseUrl: string; rightsPage: number };
+type PdfMeta = { id: string; title: string; author: string; pageCount: number; byteLength: number; sha256: string; sourceUrl: string; license: string; licenseUrl: string; rightsPage: number; textRights: string };
 export function PdfBookReader({ book }: { book: PdfMeta }) {
   const [raw, writeProgress] = useLocalValue(`ather:pdf-reading:${book.id}`);
   const saved = parseLocalValue(raw).page;
@@ -123,7 +123,7 @@ export function PdfBookReader({ book }: { book: PdfMeta }) {
     <div className="p-4 text-xs text-slate-600 leading-7">
       <p>{storageError ? 'تعذر حفظ الصفحة على هذا الجهاز.' : 'موضع القراءة محفوظ تلقائيًا على هذا الجهاز.'}</p>
       <p>الكتاب يُقرأ داخل أثر؛ تحميل صفحاته يحتاج إلى اتصال بالإنترنت.</p>
-      <details className="border border-slate-200 rounded-xl p-3 mt-3 bg-white"><summary className="font-bold cursor-pointer">المصدر وحقوق النسخة</summary><p>نسخة مؤسسة هنداوي الأصلية؛ بيانات التأليف والترجمة وحقوق النص داخل صفحات الكتاب.</p><button onClick={() => goTo(book.rightsPage)} className="text-emerald-800 underline">اقرأ صفحة الحقوق</button>{' · '}<a href={book.licenseUrl} target="_blank" rel="noreferrer" className="underline">{book.license}</a>{' · '}<a href={book.sourceUrl} target="_blank" rel="noreferrer" className="underline">ملف الناشر الأصلي</a></details>
+      <details className="border border-slate-200 rounded-xl p-3 mt-3 bg-white"><summary className="font-bold cursor-pointer">المصدر وحقوق النسخة</summary><p>نسخة مؤسسة هنداوي الأصلية؛ {book.textRights === 'licensed-translation' ? 'الترجمة العربية وتصميم الكتاب مرخّصان برخصة المشاع الإبداعي.' : 'النص العربي الأصلي في الملكية العامة وفق الناشر، وتصميم الكتاب مرخّص برخصة المشاع الإبداعي.'} بيانات التأليف والحقوق داخل صفحات الكتاب.</p><button onClick={() => goTo(book.rightsPage)} className="text-emerald-800 underline">اقرأ صفحة الحقوق</button>{' · '}<a href={book.licenseUrl} target="_blank" rel="noreferrer" className="underline">{book.license}</a>{' · '}<a href={book.sourceUrl} target="_blank" rel="noreferrer" className="underline">ملف الناشر الأصلي</a></details>
     </div>
   </div>;
 }

@@ -38,7 +38,13 @@ python3 -m venv /tmp/ather-pdf-tools
 npm run check:content
 ```
 
-The importer checks the publisher document, author, title, page count and explicit CC BY 4.0 rights page, then records the ETag, length and SHA-256. Failed verification preserves the existing catalogues. Downloads are maintenance fixtures in `/tmp/ather-pdf-cache`; override with `READING_PDF_CACHE`. They are not committed or downloaded during deployment.
+<!-- coderabbit-ai-generated:v1 -->
+
+<!-- coderabbit-ai-generated-section:v1:cdde7eaba4c6ffd3207cc4afd04025fb8d7fdbeab9b0951139241a5ef00172d0 -->
+
+The importer checks the publisher document, author, title, page count and rights page, then records the ETag, length and SHA-256. `textRights` must identify either an explicitly CC BY 4.0 licensed Arabic translation or an original Arabic text identified by the publisher as public domain; a CC license for the layout alone does not license a translation. Failed verification preserves the existing catalogues. Check the publisher’s full edition and its rights before selecting a title. Downloads are maintenance fixtures in `/tmp/ather-pdf-cache`; override with `READING_PDF_CACHE`. They are not committed or downloaded during deployment. Run `/tmp/ather-pdf-tools/bin/python -m unittest discover -s tests -p 'test_pdf_rights.py'` to verify these rights rules.
+
+<!-- /coderabbit-ai-generated:v1 -->
 
 The PDF.js legacy browser build renders the original document inside the application. `/api/library/pdf/[id]` serves pinned publisher bytes in chunks of at most 1 MiB. Requests require an allowlisted ID, valid bounds and the current source version. ETag changes or truncated responses fail visibly. Original publisher credits and license links remain accessible. PDFs and Hadith API collections require connectivity; full offline reading is not promised.
 
