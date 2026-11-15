@@ -101,7 +101,7 @@ def main():
         raise SystemExit('Import failed; existing catalogues were preserved')
     results.sort(key=lambda book: book['id'])
     Path('lib/data/pdf-catalog.json').write_text(json.dumps(results, ensure_ascii=False, indent=2) + '\n')
-    library = [{key: book[key] for key in ['id', 'title', 'author', 'category', 'description', 'pageCount']} | {'readUrl': book['sourceUrl'], 'readerHref': '/library/pdf/' + book['id']} for book in results]
+    library = [{key: book[key] for key in ['id', 'title', 'author', 'category', 'description', 'pageCount', 'translator'] if key in book} | {'readUrl': book['sourceUrl'], 'readerHref': '/library/pdf/' + book['id']} for book in results]
     Path('lib/data/pdf-library.json').write_text(json.dumps(library, ensure_ascii=False, indent=2) + '\n')
     Path('/tmp/ather-pdf-import-failures.json').write_text(json.dumps(failures, ensure_ascii=False, indent=2))
     print(len(results), 'verified publisher PDFs;', len(failures), 'rejected', flush=True)

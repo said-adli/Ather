@@ -4,7 +4,7 @@ import Link from 'next/link';
 import type { PDFDocumentProxy, RenderTask } from 'pdfjs-dist';
 import { useLocalValue, parseLocalValue } from '@/lib/hooks/useLocalValue';
 
-type PdfMeta = { id: string; title: string; author: string; pageCount: number; byteLength: number; sha256: string; sourceUrl: string; license: string; licenseUrl: string; rightsPage: number; textRights: string };
+type PdfMeta = { id: string; title: string; author: string; translator?: string; pageCount: number; byteLength: number; sha256: string; sourceUrl: string; license: string; licenseUrl: string; rightsPage: number; textRights: string };
 export function PdfBookReader({ book }: { book: PdfMeta }) {
   const [raw, writeProgress] = useLocalValue(`ather:pdf-reading:${book.id}`);
   const saved = parseLocalValue(raw).page;
@@ -99,6 +99,7 @@ export function PdfBookReader({ book }: { book: PdfMeta }) {
       <Link href="/library" className="text-sm text-emerald-800">← المكتبة</Link>
       <h1 className="font-arabic text-xl font-bold mt-3">{book.title}</h1>
       <p className="text-xs text-slate-500 mt-1">{book.author} · نسخة الناشر · {book.pageCount.toLocaleString('ar')} صفحة</p>
+      {book.translator && <p className="text-xs text-slate-500 mt-1">ترجمة: {book.translator}</p>}
       <div className="flex flex-wrap items-center justify-between gap-2 mt-4 text-sm">
         <button onClick={() => goTo(pageNumber - 1)} disabled={pageNumber === 1} className="border rounded-lg px-3 py-2 disabled:opacity-30">السابقة</button>
         <form onSubmit={event => { event.preventDefault(); goTo(Number(new FormData(event.currentTarget).get('page'))); }} className="flex items-center gap-1">

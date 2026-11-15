@@ -17,7 +17,7 @@ export default function LibraryPage() {
   const normalized = normalizeArabic(query);
   const isStory = (category: string) => ['روايات', 'قصص'].includes(category);
   const books = BOOKS.filter(book =>
-    normalizeArabic(`${book.title} ${book.author} ${book.description}`).includes(normalized)
+    normalizeArabic(`${book.title} ${book.author} ${book.translator ?? ''} ${book.description}`).includes(normalized)
     && (tab === 'novels' ? isStory(book.category) : !isStory(book.category))
     && (tab === 'novels' || category === 'الكل' || book.category === category)
   )
@@ -33,7 +33,7 @@ export default function LibraryPage() {
       </div>
       <div className="relative mt-4">
         <Search className="absolute right-3 top-3.5 text-slate-400" size={18} />
-        <input aria-label="البحث في المكتبة" value={query} onChange={e => { setQuery(e.target.value); setLimit(24); }} placeholder={tab === 'hadith' ? 'ابحث عن مجموعة حديث...' : 'ابحث بالعنوان أو المؤلف...'} className="w-full rounded-xl border border-slate-200 bg-white pr-10 pl-4 py-3 text-sm focus:outline-emerald-600" />
+        <input aria-label="البحث في المكتبة" value={query} onChange={e => { setQuery(e.target.value); setLimit(24); }} placeholder={tab === 'hadith' ? 'ابحث عن مجموعة حديث...' : 'ابحث بالعنوان أو المؤلف أو المترجم...'} className="w-full rounded-xl border border-slate-200 bg-white pr-10 pl-4 py-3 text-sm focus:outline-emerald-600" />
       </div>
     </header>
     <section id="library-panel" role="tabpanel" aria-labelledby={`tab-${tab}`} className="p-4 pb-10">
@@ -53,6 +53,7 @@ export default function LibraryPage() {
             <div className="flex justify-between gap-3 items-start"><BookOpen className="text-emerald-700 shrink-0" size={24} /><span className="text-[11px] text-amber-800 bg-amber-50 rounded-full px-3 py-1">{book.category}</span></div>
             <h2 className="font-arabic font-bold text-2xl mt-4 leading-relaxed">{book.title}</h2>
             <p className="text-sm text-emerald-700 mt-1">{book.author}</p>
+            {book.translator && <p className="text-xs text-slate-600 mt-1">ترجمة: {book.translator}</p>}
             {book.pageCount && <p className="text-xs text-slate-500 mt-2">{book.pageCount.toLocaleString("ar")} صفحة · نسخة الناشر</p>}
             {book.chapterCount && <p className="text-xs text-slate-500 mt-2">{book.chapterCount.toLocaleString("ar")} فصلًا وقسمًا · نص داخل التطبيق</p>}
             <p className="text-xs text-slate-500 leading-7 mt-3 mb-4">{book.description}</p>

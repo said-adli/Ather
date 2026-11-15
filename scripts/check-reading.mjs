@@ -65,6 +65,7 @@ for (const pdf of pdfs) {
   assert.ok(meta, `Unlisted PDF: ${pdf.id}`);
   assert.equal(meta.title, pdf.title);
   assert.equal(meta.author, pdf.author);
+  assert.equal(meta.translator, pdf.translator, `Translator mismatch: ${pdf.id}`);
   assert.equal(meta.pageCount, pdf.pageCount);
   assert.equal(bookReaderHref(meta), `/library/pdf/${pdf.id}`);
   pages += pdf.pageCount;

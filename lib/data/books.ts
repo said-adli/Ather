@@ -5,6 +5,7 @@ export interface Book {
   id: string;
   title: string;
   author: string;
+  translator?: string;
   category: string;
   description: string;
   readUrl: string;
