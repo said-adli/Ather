@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { BOOKS } from '@/lib/data/books';
 import { getReadingBook } from '@/lib/reading';
+import { BookContents } from '@/components/features/BookContents';
 import { ContinueReading } from '@/components/features/ContinueReading';
 
 export default async function BookPage({ params }: { params: Promise<{ id: string }> }) {
@@ -23,7 +24,6 @@ export default async function BookPage({ params }: { params: Promise<{ id: strin
       <a className="underline text-emerald-800" href={book.sourceUrl} target="_blank" rel="noreferrer">النسخة الأصلية وسجل المساهمين</a>{' · '}
       <a className="underline text-emerald-800" href={book.licenseUrl} target="_blank" rel="noreferrer">{book.license}</a>
     </details>
-    <h2 className="font-bold text-xl mb-4">فهرس القراءة <span className="text-sm text-slate-500">({book.chapters.length})</span></h2>
-    <ol className="space-y-2">{book.chapters.map((chapter, index) => <li key={index}><Link href={`/library/books/${id}/${index + 1}`} className="block p-4 bg-white rounded-xl border border-slate-100 text-sm leading-7">{index + 1}. {chapter.title}</Link></li>)}</ol>
+    <BookContents id={id} chapters={book.chapters.map(chapter => chapter.title)} />
   </div>;
 }

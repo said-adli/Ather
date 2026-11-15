@@ -7,6 +7,12 @@ test('Arabic search matches hamza, diacritics, tatweel and whitespace without mo
   assert.equal(normalizeArabic('  الأَرْبَعُون النَّوَوِيَّة  '), normalizeArabic('الاربعون النووية'));
   assert.equal(normalizeArabic('حَـيّ بن يَقظان'), normalizeArabic('حي بن يقظان'));
 });
+test('Arabic library discovery folds numeric scripts and repeated spaces', () => {
+  assert.equal(normalizeArabic('حول  العالم في ٨٠ يوماً'), normalizeArabic('حول العالم في 80 يوما'));
+  assert.equal(normalizeArabic('١٧ رمضان'), normalizeArabic('17 رمضان'));
+  assert.equal(normalizeArabic('۸۰'), '80');
+});
+
 test('Unsupported collection and malformed section never reach the provider', async () => {
   const original = globalThis.fetch;
   let requests = 0;

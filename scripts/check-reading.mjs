@@ -5,12 +5,19 @@ const ids = new Set();
 let chapters = 0;
 for (const book of BOOKS) {
   assert.ok(!ids.has(book.id), `Duplicate book: ${book.id}`); ids.add(book.id);
+  assert.ok(bookReaderHref(book)?.startsWith('/library/'), `Missing internal reader: ${book.id}`);
   if (!book.readingId) continue;
   const source = JSON.parse(readFileSync(`lib/data/reading/${book.readingId}.json`, 'utf8'));
   assert.equal(source.license, 'CC BY-SA 4.0');
   assert.ok(source.attribution && source.importedAt && source.sourceTitle);
   assert.equal(new URL(source.sourceUrl).hostname, 'ar.wikisource.org');
   assert.ok(source.chapters.length > 0);
+  if (book.chapterCount) assert.equal(book.chapterCount, source.chapters.length);
+  if (source.importerVersion === 2) {
+    assert.ok(source.sourcePages.length >= source.chapters.length);
+    const inventory = new Set(source.sourcePages.map(page => page.revision));
+    for (const chapter of source.chapters) assert.ok(inventory.has(chapter.revision));
+  }
   const revisions = new Set();
   let characters = 0;
   for (const chapter of source.chapters) {
@@ -29,3 +36,30 @@ for (const book of BOOKS) {
   console.log(`${book.id}: ${source.chapters.length} chapters, ${characters} characters`);
 }
 console.log(`${BOOKS.length} catalog titles, ${BOOKS.filter(b => bookReaderHref(b)).length} internal titles, ${chapters} local chapters; integrity passed`);
+
+const pdfs = JSON.parse(readFileSync('lib/data/pdf-catalog.json', 'utf8'));
+const pdfLibrary = JSON.parse(readFileSync('lib/data/pdf-library.json', 'utf8'));
+assert.equal(pdfs.length, pdfLibrary.length);
+const hashes = new Set();
+let pages = 0;
+for (const pdf of pdfs) {
+  assert.equal(pdf.sourceUrl, `https://downloads.hindawi.org/books/${pdf.publisherId}.pdf`);
+  assert.match(pdf.publisherId, /^\d{8}$/);
+  assert.equal(pdf.license, 'CC BY 4.0');
+  assert.equal(pdf.licenseUrl, 'https://creativecommons.org/licenses/by/4.0/deed.ar');
+  assert.ok(pdf.rightsStatement && pdf.verifiedAt && pdf.author && pdf.title);
+  assert.ok(Number.isInteger(pdf.pageCount) && pdf.pageCount >= 5);
+  assert.ok(Number.isInteger(pdf.byteLength) && pdf.byteLength > 1000 && pdf.byteLength < 40 * 1024 * 1024);
+  assert.ok(pdf.rightsPage > 0 && pdf.rightsPage <= pdf.pageCount);
+  assert.match(pdf.sha256, /^[a-f0-9]{64}$/);
+  assert.match(pdf.etag, /^"[\w-]+"$/);
+  assert.ok(!hashes.has(pdf.sha256), `Duplicate PDF: ${pdf.id}`); hashes.add(pdf.sha256);
+  const meta = BOOKS.find(book => book.id === pdf.id);
+  assert.ok(meta, `Unlisted PDF: ${pdf.id}`);
+  assert.equal(meta.title, pdf.title);
+  assert.equal(meta.author, pdf.author);
+  assert.equal(meta.pageCount, pdf.pageCount);
+  assert.equal(bookReaderHref(meta), `/library/pdf/${pdf.id}`);
+  pages += pdf.pageCount;
+}
+console.log(`${pdfs.length} attributed publisher PDFs, ${pages} pages; integrity passed`);

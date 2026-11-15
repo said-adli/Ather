@@ -1,10 +1,11 @@
 import type { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Amiri } from "next/font/google";
 import { BottomNav } from "@/components/layout/BottomNav";
 import { IOSInstallPrompt } from "@/components/ui/IOSInstallPrompt";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
+const amiri = Amiri({ subsets: ["arabic"], weight: ["400", "700"], display: "swap", variable: "--font-arabic" });
 
 export const viewport: Viewport = {
   themeColor: "#ffffff",
@@ -30,7 +31,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ar" dir="rtl" className="h-full antialiased">
-      <body className={`${inter.className} h-full overflow-hidden bg-slate-50 text-slate-900`}>
+      <body className={`${inter.className} ${amiri.variable} h-full overflow-hidden bg-slate-50 text-slate-900`}>
         <div className="flex flex-col h-full mx-auto max-w-md bg-white shadow-2xl overflow-hidden relative">
           
           {/* Main Content Area */}
