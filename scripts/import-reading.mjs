@@ -49,10 +49,12 @@ for (const [id, title] of (selected.length ? selected.map(id => { const book = b
     const page = fetchPage(pageTitle);
     sourcePages.push({ title: pageTitle, revision: page.revid });
     if (seen.size % 20 === 0) console.log(id, seen.size, 'pages imported');
-    const { author, children, blocks } = extractSourcePage(page.text['*'], title);
+    const { author, translator, children, blocks } = extractSourcePage(page.text['*'], title);
     if (pageTitle === title) {
       const anonymous = additions.find(book => book.id === id)?.anonymous === true;
       if (anonymous ? author.trim() !== '' : !author.includes(expectedAuthors[id])) throw new Error(`Author mismatch: ${title} (${author})`);
+      const expectedTranslator = additions.find(book => book.id === id)?.translator;
+      if (expectedTranslator && !translator.includes(expectedTranslator)) throw new Error(`Translator mismatch: ${title} (${translator})`);
     }
     const fingerprint = createHash('sha256').update(JSON.stringify(blocks)).digest('hex');
     if (revisions.has(page.revid) && revisions.get(page.revid) !== fingerprint) throw new Error(`Conflicting source revision: ${pageTitle}`);

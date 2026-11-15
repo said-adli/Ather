@@ -14,6 +14,7 @@ export function extractSourcePage(html, title) {
   const $ = load(html);
   if (/هذا العمل غير مكتمل|هذا الكتاب غير مكتمل/.test($('.mw-parser-output').text())) throw new Error(`Incomplete source: ${title}`);
   const author = $('.ws-author').text();
+  const translator = $('.ws-translator').text();
   const root = $('.mw-parser-output');
   // Inspect the original contents before removing navigation, including red edit links.
   const children = [];
@@ -41,5 +42,5 @@ export function extractSourcePage(html, title) {
     if (!text || (children.length && text === 'الفهرس')) return;
     blocks.push({ type: /^h[2-6]$/.test(el.tagName) ? 'heading' : 'paragraph', text });
   });
-  return { author, children, blocks };
+  return { author, translator, children, blocks };
 }

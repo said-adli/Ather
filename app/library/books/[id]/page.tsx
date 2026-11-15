@@ -15,6 +15,7 @@ export default async function BookPage({ params }: { params: Promise<{ id: strin
     <p className="text-xs text-amber-800 mt-8">{meta.category} · قراءة داخل التطبيق</p>
     <h1 className="font-arabic text-3xl font-bold mt-3 leading-relaxed">{meta.title}</h1>
     <p className="text-emerald-700 mt-2">{meta.author}</p>
+    {meta.translator && <p className="text-sm text-slate-600 mt-1">ترجمة: {meta.translator}</p>}
     <p className="my-5 text-sm leading-7 text-slate-600">{meta.description}</p>
     <ContinueReading id={id} count={book.chapters.length} />
     <details className="my-6 rounded-2xl border border-slate-200 p-4 bg-white text-xs leading-7">

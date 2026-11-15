@@ -11,8 +11,9 @@ test('incomplete contents cannot be published as a complete book', () => {
   assert.throws(() => extractSourcePage('<div class="mw-parser-output"><a class="new" href="/w/index.php?title=كتاب/8&redlink=1">٨</a></div>', 'كتاب'), /Missing chapter/);
 });
 test('import retains text and poetry while removing navigation and licensing boxes', () => {
-  const result = extractSourcePage('<div class="ws-author">المؤلف</div><div class="mw-parser-output"><table><tr><td><a href="/wiki/كتاب/1">الأول</a></td></tr></table><p><a href="/wiki/كتاب/1">الأول</a> | <a href="/wiki/كتاب/1">الأول</a></p><p>النص الصحيح</p><div class="poem"><p>شعر كامل</p></div><div class="imbox"><p>ترخيص</p></div></div>', 'كتاب');
+  const result = extractSourcePage('<div class="ws-author">المؤلف</div><div class="ws-translator">المترجم</div><div class="mw-parser-output"><table><tr><td><a href="/wiki/كتاب/1">الأول</a></td></tr></table><p><a href="/wiki/كتاب/1">الأول</a> | <a href="/wiki/كتاب/1">الأول</a></p><p>النص الصحيح</p><div class="poem"><p>شعر كامل</p></div><div class="imbox"><p>ترخيص</p></div></div>', 'كتاب');
   assert.equal(result.author, 'المؤلف');
+  assert.equal(result.translator, 'المترجم');
   assert.deepEqual(result.children, ['كتاب/1']);
   assert.deepEqual(result.blocks.map(b=>b.text), ['النص الصحيح','شعر كامل']);
 });

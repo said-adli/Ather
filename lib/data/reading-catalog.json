@@ -268,5 +268,26 @@
     "description": "رسالة فلسفية في النفس من أعمال ابن رشد.",
     "readUrl": "https://ar.wikisource.org/wiki/%D8%B1%D8%B3%D8%A7%D9%84%D8%A9%20%D8%A7%D9%84%D9%86%D9%81%D8%B3",
     "chapterCount": 1
+  },
+  {
+    "id": "dostoevsky-christmas-tree",
+    "readingId": "dostoevsky-christmas-tree",
+    "title": "شجرة عيد الميلاد",
+    "author": "فيودور دوستويفسكي",
+    "translator": "محمد فتحي عبد الوهاب",
+    "category": "قصص",
+    "description": "قصة قصيرة لدوستويفسكي، في ترجمة نُشرت بمجلة الرسالة عام 1948.",
+    "readUrl": "https://ar.wikisource.org/wiki/%D9%85%D8%AC%D9%84%D8%A9%20%D8%A7%D9%84%D8%B1%D8%B3%D8%A7%D9%84%D8%A9%2F%D8%A7%D9%84%D8%B9%D8%AF%D8%AF%20790%2F%D8%A7%D9%84%D9%82%D8%B5%D8%B5",
+    "chapterCount": 1
+  },
+  {
+    "id": "dostoevsky-christmas-wedding",
+    "readingId": "dostoevsky-christmas-wedding",
+    "title": "شجرة عيد الميلاد والعرس",
+    "author": "فيودور دوستويفسكي",
+    "category": "قصص",
+    "description": "قصة قصيرة نُشرت بعنوان «شجرة عيد الميلاد» في مجلة الرسالة؛ النص موقّع بالأحرف «ع. ا».",
+    "readUrl": "https://ar.wikisource.org/wiki/%D9%85%D8%AC%D9%84%D8%A9%20%D8%A7%D9%84%D8%B1%D8%B3%D8%A7%D9%84%D8%A9%2F%D8%A7%D9%84%D8%B9%D8%AF%D8%AF%201016%2F%D8%A7%D9%84%D9%82%D8%B5%D8%B5",
+    "chapterCount": 1
   }
 ]
